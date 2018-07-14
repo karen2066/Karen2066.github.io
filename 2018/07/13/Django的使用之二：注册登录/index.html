@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###登陆注册功能的实现  1.数据库数据的增删改查2.拿到http协议中请求体中的内容  3.使用哈希码加密  4.重写方法  5.使用ModelForm表单对象自动验证  ####views.py 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647def login(requ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/07/13/Django的使用之二：注册登录/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="###登陆注册功能的实现  1.数据库数据的增删改查2.拿到http协议中请求体中的内容  3.使用哈希码加密  4.重写方法  5.使用ModelForm表单对象自动验证  ####views.py 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647def login(requ">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-13T11:36:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="###登陆注册功能的实现  1.数据库数据的增删改查2.拿到http协议中请求体中的内容  3.使用哈希码加密  4.重写方法  5.使用ModelForm表单对象自动验证  ####views.py 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647def login(requ">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Django的使用之二：注册登录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/13/Django的使用之二：注册登录/" class="article-date">
+  <time datetime="2018-07-13T11:36:00.000Z" itemprop="datePublished">2018-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###登陆注册功能的实现</p>
+<blockquote>
+<p>1.数据库数据的增删改查<br>2.拿到http协议中请求体中的内容<br>  3.使用哈希码加密<br>  4.重写方法<br>  5.使用ModelForm表单对象自动验证</p>
+</blockquote>
+<p>####views.py</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">def login(request):</span><br><span class="line">    <span class="keyword">if</span> request.method.lower() == <span class="string">'get'</span>:</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, &#123;&#125;)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        # request.META类似字典，可以获得请求头,比如user_agent就是浏览器，请求行中的：method是方法，is_secure真为https</span><br><span class="line">        # get和post是拿消息体</span><br><span class="line">        username = request.POST[<span class="string">'username'</span>]</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            # 比较用户名是否存在，密码对不对</span><br><span class="line">            user = User.objects.get(username=username)</span><br><span class="line">            password = request.POST[<span class="string">'password'</span>]</span><br><span class="line">            hasher = proto.copy()</span><br><span class="line">            hasher.update(password.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">            <span class="keyword">if</span> hasher.hexdigest() == user.password:</span><br><span class="line">                # 返回302重新请求 httpresponse是200请求成功加载网页</span><br><span class="line">                <span class="keyword">return</span> redirect(<span class="string">'index'</span>)</span><br><span class="line">        except User.DoesNotExist:</span><br><span class="line">            pass</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, &#123;<span class="string">'hint'</span>: <span class="string">'用户名或密码错误'</span>&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def register(request):</span><br><span class="line">    form = UserForm()</span><br><span class="line">    <span class="keyword">if</span> request.method.lower() == <span class="string">'get'</span>:</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'register.html'</span>, &#123;<span class="string">'f'</span>: form&#125;)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        # 使用表单判断信息是否全,将表单直接快速生成，快速验证</span><br><span class="line">        form = UserForm(request.POST)</span><br><span class="line">        <span class="keyword">if</span> form.is_valid():</span><br><span class="line">            # 其实保存的是user对象</span><br><span class="line">            form.save(commit=True)</span><br><span class="line">    #     user = User()</span><br><span class="line">    #     # 访问他的post属性，像一个字典，里面是你提交的表单数据</span><br><span class="line">    #     user.username = request.POST['username']</span><br><span class="line">    #     user.password = request.POST['password']</span><br><span class="line">    #     user.email = request.POST['email']</span><br><span class="line">    #  # 生成哈希码实例</span><br><span class="line">    # # hasher = sha1()</span><br><span class="line">    # # # 通过update方法传入对象</span><br><span class="line">    # # hasher.update(user.password.encode('utf-8'))</span><br><span class="line">    # # # 利用哈希码函数对密码进行加密，16进制加密</span><br><span class="line">    # # user.password = hasher.hexdigest()</span><br><span class="line">    #     user.save()</span><br><span class="line">            <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, &#123;<span class="string">'hint'</span>: <span class="string">'注册成功请登录'</span>&#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> render(request, <span class="string">'register.html'</span>,</span><br><span class="line">                          &#123;<span class="string">'f'</span>: form&#125;)</span><br></pre></td></tr></table></figure>
+<p>###models</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 带_的库是不建议使用的</span><br><span class="line"># from _sha1 import sha1</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha1</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> PROTECT</span><br><span class="line"></span><br><span class="line"># 生成哈希码实例</span><br><span class="line">proto = sha1()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class User(models.Model):</span><br><span class="line">    no = models.AutoField(primary_key=True, db_column=<span class="string">'uno'</span>, verbose_name=<span class="string">'用户编号'</span>)</span><br><span class="line">    username = models.CharField(max_length=<span class="number">20</span>, unique=True, verbose_name=<span class="string">'用户名'</span>)</span><br><span class="line">    password = models.CharField(max_length=<span class="number">40</span>, verbose_name=<span class="string">'用户口令'</span>)</span><br><span class="line">    email = models.CharField(max_length=<span class="number">255</span>, verbose_name=<span class="string">'邮箱'</span>)</span><br><span class="line">    tcounter = models.IntegerField(<span class="keyword">default</span>=<span class="number">3</span>, db_column=<span class="string">'counter'</span>, verbose_name=<span class="string">'票数'</span>)</span><br><span class="line"></span><br><span class="line">    # 重写save方法</span><br><span class="line">    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):</span><br><span class="line">        # 在对象基础上复制一份，比直接创建更快，内存拷贝性能更好</span><br><span class="line">        hasher = proto.copy()</span><br><span class="line">        # 通过update方法传入对象</span><br><span class="line">        hasher.update(self.password.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">        # 利用哈希码函数对密码进行加密，16进制加密</span><br><span class="line">        self.password = hasher.hexdigest()</span><br><span class="line">        <span class="keyword">super</span>().save(force_insert, force_update, using, update_fields)</span><br><span class="line"></span><br><span class="line">    class Meta(object):</span><br><span class="line">        db_table = <span class="string">'tb_user'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'用户'</span></span><br><span class="line">        verbose_name = <span class="string">'用户'</span></span><br></pre></td></tr></table></figure>
+<p>urls</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">path(<span class="string">'register/'</span>, views.register),</span><br><span class="line">path(<span class="string">'login/'</span>, views.login),</span><br><span class="line">path(<span class="string">'check/'</span>, views.check_username),</span><br></pre></td></tr></table></figure>
+<p>login.html</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;用户登录&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;用户登录&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;hr&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;&#123;&#123; hint &#125;&#125;&lt;/</span>p&gt;</span><br><span class="line">    &lt;form action=<span class="string">"/login/"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">        &#123;% csrf_token %&#125;</span><br><span class="line">        &lt;div&gt;用户名：&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;</span></span><br><span class="line"><span class="regexp">            &lt;input type="text" name="username" required&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;密码&lt;/</span>div&gt;</span><br><span class="line">            &lt;input type=<span class="string">"password"</span> name=<span class="string">"password"</span> required&gt;</span><br><span class="line"></span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;button&gt;登录&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>form&gt;</span><br><span class="line">    &lt;a href=<span class="string">"/register"</span>&gt;Register Rightnow!&lt;/a&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+<p>register.html</p>
+<p>使用ajax来做验证</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&#123;% load staticfiles %&#125;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;用户注册&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;用户注册&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;hr&gt;</span></span><br><span class="line"><span class="regexp">&#123;#    &#123;% for error in f.errors %&#125;#&#125;</span></span><br><span class="line">&#123;#        &lt;p&gt;&#123;&#123; error &#125;&#125;&lt;/p&gt;#&#125;</span><br><span class="line">&#123;#    &#123;% endfor %&#125;#&#125;</span><br><span class="line">    &lt;form action=<span class="string">"/register/"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">&#123;#        加上csrf_token的令牌， 防止跨站身份伪造 #&#125;</span><br><span class="line">        &#123;% csrf_token %&#125;</span><br><span class="line">&#123;#        &lt;table&gt;#&#125;</span><br><span class="line">        &#123;# 取出来的是行#&#125;</span><br><span class="line">&#123;#        &#123;&#123; f &#125;&#125;#&#125;</span><br><span class="line">&#123;#        &lt;/table&gt;#&#125;</span><br><span class="line"></span><br><span class="line">        &lt;div&gt;用户名：&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;</span></span><br><span class="line"><span class="regexp">            &#123;&#123; f.username &#125;&#125;</span></span><br><span class="line"><span class="regexp">            &lt;span id="uhint"&gt;&lt;/</span>span&gt;</span><br><span class="line">            &#123;% <span class="keyword">if</span> f.errors.username %&#125;</span><br><span class="line">                &lt;span&gt;用户名无效或已经被注册&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">            &#123;% endif %&#125;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">        &lt;div&gt;密码：&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;</span></span><br><span class="line"><span class="regexp">            &#123;&#123; f.password &#125;&#125;</span></span><br><span class="line"><span class="regexp">            &#123;% if f.errors.password %&#125;</span></span><br><span class="line"><span class="regexp">                &lt;span&gt;无效的密码&lt;/</span>span&gt;</span><br><span class="line">            &#123;% endif %&#125;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;邮箱：&lt;/</span>div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &#123;&#123; f.email &#125;&#125;</span><br><span class="line">            &#123;% <span class="keyword">if</span> f.errors.email %&#125;</span><br><span class="line">                &lt;span&gt;邮箱无效或已经被注册&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">            &#123;% endif %&#125;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;button&gt;注册&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>form&gt;</span><br><span class="line">    &lt;a href=<span class="string">"/"</span>&gt;返回登录&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">&lt;script src="https:/</span><span class="regexp">/cdn.bootcss.com/</span>jquery/<span class="number">3.3</span><span class="number">.1</span>/jquery.min.js<span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &lt;script&gt;</span></span><br><span class="line"><span class="string">    $(function()&#123;</span></span><br><span class="line"><span class="string">        $('#id_username').on('blur', function(evt)&#123;</span></span><br><span class="line"><span class="string">            var $input = $(evt.target);</span></span><br><span class="line"><span class="string">            $.ajax(&#123;</span></span><br><span class="line"><span class="string">                &#123;#'url': '/check/?username=' + $input.val(),#&#125;</span></span><br><span class="line"><span class="string">                'url': '/check',</span></span><br><span class="line"><span class="string">                'data': &#123;'username':$input.val()&#125;,</span></span><br><span class="line"><span class="string">                'type':'get',</span></span><br><span class="line"><span class="string">                'dataType':'json',</span></span><br><span class="line"><span class="string">                'success':function(json)&#123;</span></span><br><span class="line"><span class="string">                   var $img = $('&lt;img&gt;');</span></span><br><span class="line"><span class="string">                   if(json.valid)&#123;</span></span><br><span class="line"><span class="string">                        $img.attr('src', '/static/images/icon-yes.svg');</span></span><br><span class="line"><span class="string">                   &#125;else&#123;</span></span><br><span class="line"><span class="string">                        $img.attr('src', '/static/images/icon-no.svg');</span></span><br><span class="line"><span class="string">                   &#125;</span></span><br><span class="line"><span class="string">                   $('#uhint').empty().append($img)</span></span><br><span class="line"><span class="string">                &#125;,</span></span><br><span class="line"><span class="string">                'error':function()&#123;&#125;</span></span><br><span class="line"><span class="string">            &#125;)</span></span><br><span class="line"><span class="string">        &#125;)</span></span><br><span class="line"><span class="string">    &#125;)</span></span><br><span class="line"><span class="string">    &lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+<p>优化：使用form对象自动验证</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django <span class="keyword">import</span> forms</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> hello.models <span class="keyword">import</span> User</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class UserForm(forms.ModelForm):</span><br><span class="line">    # 跟模型对应的表单.ModelForm/也可以写Form页面是什么样就什么样</span><br><span class="line">    # 自动帮我验证</span><br><span class="line">    username = forms.CharField(max_length=<span class="number">20</span>, label=<span class="string">'用户名'</span>)</span><br><span class="line">    password = forms.CharField(widget=forms.PasswordInput, max_length=<span class="number">20</span>, min_length=<span class="number">8</span>, label=<span class="string">'密码'</span>)</span><br><span class="line">    email = forms.CharField(widget=forms.EmailInput, max_length=<span class="number">255</span>, label=<span class="string">'邮箱'</span>)</span><br><span class="line"></span><br><span class="line">    class Meta(object):</span><br><span class="line">        # 跟表单对应的模型是，因为写的是ModelForm，Form就不用加</span><br><span class="line">        model = User</span><br><span class="line">        # 对应的字段是</span><br><span class="line">        fields = (<span class="string">'username'</span>, <span class="string">'password'</span>, <span class="string">'email'</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/13/Django的使用之二：注册登录/" data-id="cjjl4o7s9000213kl6n6ry6j2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/13/Django的使用之三：投票应用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/14/“mac-test”/">“mac_test”</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/13/Django的使用之一：动态展示/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/13/Django的使用之三：投票应用/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/13/Django的使用之二：注册登录/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

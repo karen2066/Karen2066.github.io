@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###如何建立展示页面  1.使用url传递参数：匹配url,捕获用户选择的no，但在Django1中使用正则表达式，命名捕获组在python中必须要加一个P    path(‘subjects/int:no/‘, views.show_teachers)    拿到的方法是：&amp;lt;a href=”/good/“    如何拿到？后面的数据？  2.ORM（对象关系映射）框架  3.模型的创建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/07/13/Django的使用之一：动态展示/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="###如何建立展示页面  1.使用url传递参数：匹配url,捕获用户选择的no，但在Django1中使用正则表达式，命名捕获组在python中必须要加一个P    path(‘subjects/int:no/‘, views.show_teachers)    拿到的方法是：&amp;lt;a href=”/good/“    如何拿到？后面的数据？  2.ORM（对象关系映射）框架  3.模型的创建">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-13T11:36:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="###如何建立展示页面  1.使用url传递参数：匹配url,捕获用户选择的no，但在Django1中使用正则表达式，命名捕获组在python中必须要加一个P    path(‘subjects/int:no/‘, views.show_teachers)    拿到的方法是：&amp;lt;a href=”/good/“    如何拿到？后面的数据？  2.ORM（对象关系映射）框架  3.模型的创建">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Django的使用之一：动态展示" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/13/Django的使用之一：动态展示/" class="article-date">
+  <time datetime="2018-07-13T11:36:00.000Z" itemprop="datePublished">2018-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###如何建立展示页面</p>
+<blockquote>
+<p>1.使用url传递参数：匹配url,捕获用户选择的no，但在Django1中使用正则表达式，命名捕获组在python中必须要加一个P<br>    path(‘subjects/<a href="int:no" target="_blank" rel="noopener">int:no</a>/‘, views.show_teachers)<br>    拿到的方法是：&lt;a href=”/good/“<br>    如何拿到？后面的数据？<br>  2.ORM（对象关系映射）框架<br>  3.模型的创建<br>  4.属性访问器<br>  5.加载静态资源</p>
+</blockquote>
+<p>####展示student和teacher页面</p>
+<p>#####首先建立模型:models.py文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">class Subject(models.Model):</span><br><span class="line">    no = models.AutoField(primary_key=True, db_column=<span class="string">'sno'</span>, verbose_name=<span class="string">'编号'</span>)</span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>, db_column=<span class="string">'sname'</span>, verbose_name=<span class="string">'名称'</span>)</span><br><span class="line">    intro = models.CharField(max_length=<span class="number">511</span>, db_column=<span class="string">'sintro'</span>, verbose_name=<span class="string">'介绍'</span>)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line">    class Meta(object):</span><br><span class="line">        db_table = <span class="string">'tb_subject'</span></span><br><span class="line">        ordering = (<span class="string">'no'</span>, )</span><br><span class="line">        verbose_name_plural = <span class="string">'学科'</span></span><br><span class="line">        verbose_name = <span class="string">'学科'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Django 框架中包含了一个ORM（对象关系映射）框架</span><br><span class="line"># ORM 可以帮助我们完成对象模型到关系模型的双向转换</span><br><span class="line">class Teacher(models.Model):</span><br><span class="line"></span><br><span class="line">    # 自增长的字段, 对应的列是tno</span><br><span class="line">    no = models.AutoField(primary_key=True, db_column=<span class="string">'tno'</span>, verbose_name=<span class="string">'编号'</span>)</span><br><span class="line">    # 字符串, 数据库里面的名字（加前缀表示）</span><br><span class="line">    name = models.CharField(max_length=<span class="number">20</span>, db_column=<span class="string">'tname'</span>, verbose_name=<span class="string">'姓名'</span>)</span><br><span class="line">    manager = models.BooleanField(<span class="keyword">default</span>=False, db_column=<span class="string">'tmanager'</span>, verbose_name=<span class="string">'是否是主管'</span>)</span><br><span class="line">    # job = models.CharField(max_length=10, db_column='tjob', verbose_name='职位')</span><br><span class="line">    intro = models.CharField(max_length=<span class="number">1023</span>, db_column=<span class="string">'tintro'</span>, verbose_name=<span class="string">'介绍'</span>)</span><br><span class="line">    motto = models.CharField(max_length=<span class="number">255</span>, db_column=<span class="string">'tmotto'</span>, verbose_name=<span class="string">'理念'</span>)</span><br><span class="line">    photo = models.CharField(max_length=<span class="number">511</span>, db_column=<span class="string">'tphoto'</span>, <span class="literal">null</span>=True, blank=True)</span><br><span class="line">    # 多的这边通过外键列建立关系, 外键列参照了Subject, 外键类on_delete=PROTECT不运行删除，级联就是一起删除，有老师的学科不让删除</span><br><span class="line">    subject = models.ForeignKey(Subject, db_column=<span class="string">'sno'</span>, on_delete=PROTECT, related_name=<span class="string">'+'</span>, verbose_name=<span class="string">'所属学科'</span>)</span><br><span class="line">    good_count = models.IntegerField(<span class="keyword">default</span>=<span class="number">0</span>, db_column=<span class="string">'tgcount'</span>, verbose_name=<span class="string">'好评'</span>)</span><br><span class="line">    bad_count = models.IntegerField(<span class="keyword">default</span>=<span class="number">0</span>, db_column=<span class="string">'tbcount'</span>, verbose_name=<span class="string">'差评'</span>)</span><br><span class="line"></span><br><span class="line">    # 属性的访问器，getter方法，将方法包装成属性，可以直接使用</span><br><span class="line">    @property</span><br><span class="line">    def gcount(self):</span><br><span class="line">        <span class="keyword">return</span> f<span class="string">'&#123;self.good_count&#125;'</span> \</span><br><span class="line">            <span class="keyword">if</span> self.good_count &lt;= <span class="number">999</span> <span class="keyword">else</span> <span class="string">'999+'</span></span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def bcount(self):</span><br><span class="line">        <span class="keyword">return</span> f<span class="string">'&#123;self.bad_count&#125;'</span>\</span><br><span class="line">            <span class="keyword">if</span> self.bad_count &lt;= <span class="number">999</span> <span class="keyword">else</span> <span class="string">'999+'</span></span><br><span class="line"></span><br><span class="line">    # 内部类,给表改名字，Meta代表这个表的原数据</span><br><span class="line">    class Meta(object):</span><br><span class="line">        db_table = <span class="string">'tb_teacher'</span></span><br><span class="line">        verbose_name = <span class="string">'讲师'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'讲师'</span></span><br></pre></td></tr></table></figure>
+<p>views.py文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string">两个非常重要的对象：</span></span><br><span class="line"><span class="string">HttpRequest</span></span><br><span class="line"><span class="string">HttpResponse</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def show_subjects(request):</span><br><span class="line">    # no = randint(1, 6)</span><br><span class="line">    # 通过指定的主键取到某一个老师</span><br><span class="line">    # ctx = &#123;'teacher': Teacher.objects.get(pk=no)&#125;</span><br><span class="line"></span><br><span class="line">    ctx = &#123;<span class="string">'subjects_list'</span>: Subject.objects.all()&#125;</span><br><span class="line"></span><br><span class="line">    # teacher = &#123;</span><br><span class="line">    #     'name': 'yt',</span><br><span class="line">    #     'intro': 'python',</span><br><span class="line">    #     'motto': 'happy',</span><br><span class="line">    # &#125;</span><br><span class="line">    # ctx = &#123;'teacher': teacher&#125;</span><br><span class="line">    # teacher = &#123;'name': '王',</span><br><span class="line">    #             'intro': 'python',</span><br><span class="line">    #             'motto': 'protact makes profect'&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'subject.html'</span>, ctx)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def show_teachers(request, no):</span><br><span class="line">    # 通过学科的编号查老师，1，查老师表，筛选学科；2，通过学科反查老师</span><br><span class="line">    # 拿到指定学科的一个模型实体,使用自带的teacher_set属性反查老师</span><br><span class="line">    # teachers = Subject.objects.get(pk=no).teacher_set.all()</span><br><span class="line">    # subject对象里的no属性等于我们传进来的no</span><br><span class="line">    teachers = Teacher.objects.filter(subject__no=no)</span><br><span class="line">    ctx = &#123;<span class="string">'teachers_list'</span>: teachers&#125;</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'teacher.html'</span>, ctx)</span><br></pre></td></tr></table></figure>
+<p>####urls</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">    # 匹配url,捕获用户选择的no，但在Django1中使用正则表达式，命名捕获组在python中必须要加一个P</span><br><span class="line">    path(<span class="string">'subjects/&lt;int:no&gt;/'</span>, views.show_teachers),</span><br></pre></td></tr></table></figure>
+<p>subjects.html文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;学科信息&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;学科信息&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;hr&gt;</span></span><br><span class="line"><span class="regexp">    &lt;ul&gt;</span></span><br><span class="line"><span class="regexp">        &#123;% for subject in subjects_list %&#125;</span></span><br><span class="line"><span class="regexp">        &lt;li&gt;</span></span><br><span class="line"><span class="regexp">            &lt;a href="/</span>subjects/&#123;&#123; subject.no &#125;&#125;<span class="string">"&gt;&#123;&#123; subject.name &#125;&#125;&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;/li&gt;</span></span><br><span class="line"><span class="string">        &#123;% endfor %&#125;</span></span><br><span class="line"><span class="string">    &lt;/ul&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+<p>teacher.html文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&#123;% load staticfiles %&#125;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Title-information&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .basic&#123;</span><br><span class="line">        width: <span class="number">60</span>%;</span><br><span class="line">        margin-right: <span class="number">20</span>px;</span><br><span class="line">        float:left;</span><br><span class="line">    &#125;</span><br><span class="line">    #img&#123;</span><br><span class="line">        width: <span class="number">40</span>%;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    hr&#123;</span><br><span class="line">        clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">    .button&#123;</span><br><span class="line">        display:inline-block;</span><br><span class="line">        width: <span class="number">80</span>px;</span><br><span class="line">        height: <span class="number">30</span>px;</span><br><span class="line">        background-color: red;</span><br><span class="line">        color: white;</span><br><span class="line">        font: <span class="number">16</span>px/<span class="number">30</span>px Arial;</span><br><span class="line">        text-decoration: none;</span><br><span class="line">        text-align: center;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp">    &#123;% for teacher in teachers_list %&#125;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;</span></span><br><span class="line"><span class="regexp">            &lt;div class="basic"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;h1&gt;&#123;&#123; teacher.name &#125;&#125;老师&lt;/</span>h1&gt;</span><br><span class="line">                &lt;hr&gt;</span><br><span class="line">                简介</span><br><span class="line">                &lt;p&gt;&#123;&#123; teacher.intro &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">                理念</span></span><br><span class="line"><span class="regexp">                &lt;p&gt;&#123;&#123; teacher.motto &#125;&#125;&lt;/</span>p&gt;</span><br><span class="line">                &#123;#执行js功能链接#&#125;</span><br><span class="line">                &lt;a id=<span class="string">"&#123;&#123; teacher.no &#125;&#125;"</span> href=<span class="string">"javascript:void(0);"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"good button"</span>&gt;like(&#123;&#123; teacher.good_count &#125;&#125;)&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                &lt;a mydata="&#123;&#123; teacher.no &#125;&#125;" href="javascript:void(0);" class="bad button"&gt;dislike(&#123;&#123; teacher.bad_count &#125;&#125;)&lt;/</span>a&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">            &#123;# 加载静态资源#&#125;</span></span><br><span class="line"><span class="regexp">            &lt;div id="img" &gt;</span></span><br><span class="line"><span class="regexp">                &lt;p&gt;&lt;img src="&#123;% static teacher.photo %&#125;" alt=""&gt;&lt;/</span>p&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'.good'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</span><br><span class="line">            &#123;#拿到事件源 a标签#&#125;</span><br><span class="line">            <span class="keyword">var</span> a = $(evt.target);</span><br><span class="line">            $.getJSON(<span class="string">'/good/'</span> + a.attr(<span class="string">'id'</span>), <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (json.code == <span class="number">200</span>)&#123;</span><br><span class="line">                    a.text(<span class="string">'like('</span> + json.good + <span class="string">')'</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;);</span><br><span class="line">        $(<span class="string">'.bad'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> a = $(evt.target);</span><br><span class="line">            $.getJSON(<span class="string">'/bad/'</span> + a.attr(<span class="string">'mydata'</span>), <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (json.code == <span class="number">200</span>)&#123;</span><br><span class="line">                    a.text(<span class="string">'dislike('</span> + json.bad + <span class="string">')'</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/13/Django的使用之一：动态展示/" data-id="cjjl4o7ry000013kl2298pmde" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/14/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/13/Django的使用之三：投票应用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/14/“mac-test”/">“mac_test”</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/13/Django的使用之一：动态展示/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/13/Django的使用之三：投票应用/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/13/Django的使用之二：注册登录/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

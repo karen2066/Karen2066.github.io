@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###投票应用，给老师投票，且每个用户只有三票  1.将字典转换成json格式2.ajax请求  ####views.py文件 123456789101112131415161718192021222324252627def make_good_comment(request, no):    teacher = Teacher.objects.get(pk=no)    teacher.good">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/07/13/Django的使用之三：投票应用/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="###投票应用，给老师投票，且每个用户只有三票  1.将字典转换成json格式2.ajax请求  ####views.py文件 123456789101112131415161718192021222324252627def make_good_comment(request, no):    teacher = Teacher.objects.get(pk=no)    teacher.good">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-13T11:36:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="###投票应用，给老师投票，且每个用户只有三票  1.将字典转换成json格式2.ajax请求  ####views.py文件 123456789101112131415161718192021222324252627def make_good_comment(request, no):    teacher = Teacher.objects.get(pk=no)    teacher.good">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Django的使用之三：投票应用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/13/Django的使用之三：投票应用/" class="article-date">
+  <time datetime="2018-07-13T11:36:00.000Z" itemprop="datePublished">2018-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###投票应用，给老师投票，且每个用户只有三票</p>
+<blockquote>
+<p>1.将字典转换成json格式<br>2.ajax请求</p>
+</blockquote>
+<p>####views.py文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def make_good_comment(request, no):</span><br><span class="line">    teacher = Teacher.objects.get(pk=no)</span><br><span class="line">    teacher.good_count += <span class="number">1</span></span><br><span class="line">    teacher.save()</span><br><span class="line"></span><br><span class="line">    # 次一点的方法：发一个重定向参数,回到首页，写的是url的名字</span><br><span class="line">    # return redirect('index')</span><br><span class="line">    # 使用ajax分布式加载</span><br><span class="line">    # 构造一个字典,context</span><br><span class="line">    ctx = &#123;<span class="string">'code'</span>: <span class="number">200</span>, <span class="string">'good'</span>: teacher.good_count&#125;</span><br><span class="line">    <span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string">    将返回的字典转换成json格式：</span></span><br><span class="line"><span class="string">     # 将字典转成json格式的函数，一个字符串,返回文本,指定返回的是json格式</span></span><br><span class="line"><span class="string">    # 这是MIME类型，Multipurpose Internet Mail Extension 告诉浏览器给的是什么类型的数据</span></span><br><span class="line"><span class="string">    # image/jpeg， image/png, image/gif, application/msword, application/pdf, audio/mp3, video/mpeg</span></span><br><span class="line"><span class="string">    # 因特网是tcp/ip协议构建的网络</span></span><br><span class="line"><span class="string">    # 如果返回的json数据中有中文，还要加上charset=utf-8</span></span><br><span class="line"><span class="string">    '</span><span class="string">''</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(json.dumps(ctx), content_type=<span class="string">'application/json'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def make_bad_comment(request, no):</span><br><span class="line">    teacher = Teacher.objects.get(pk=no)</span><br><span class="line">    teacher.bad_count += <span class="number">1</span></span><br><span class="line">    teacher.save()</span><br><span class="line">    ctx = &#123;<span class="string">'code'</span>: <span class="number">200</span>, <span class="string">'bad'</span>: teacher.bad_count&#125;</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(json.dumps(ctx), content_type=<span class="string">'application/json'</span>)</span><br></pre></td></tr></table></figure>
+<p>urls文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path(<span class="string">'good/&lt;int:no&gt;/'</span>, views.make_comment),</span><br><span class="line">path(<span class="string">'bad/&lt;int:no&gt;/'</span>, views.make_comment),</span><br></pre></td></tr></table></figure>
+<p>teachers.html文件：使用ajax方法投票</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        &#123;#绑定点击事件#&#125;</span><br><span class="line">        $(<span class="string">'.basic .button'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</span><br><span class="line">            &#123;#阻止a标签的默认行为#&#125;</span><br><span class="line">            evt.preventDefault();</span><br><span class="line">            &#123;#取到的原生js对象#&#125;</span><br><span class="line">            <span class="keyword">var</span> $a = $(evt.target);</span><br><span class="line">            &#123;#attr方法可以取属性也可以改属性，jquery的方法#&#125;</span><br><span class="line">            <span class="keyword">var</span> url = $a.attr(<span class="string">'href'</span>);</span><br><span class="line">            &#123;#传入一个json对象，#&#125;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                <span class="string">'url'</span>:url,</span><br><span class="line">                <span class="string">'type'</span>:<span class="string">'get'</span>,</span><br><span class="line">                <span class="string">'data'</span>:&#123;&#125;,</span><br><span class="line">                <span class="string">'dataType'</span>:<span class="string">'json'</span>,</span><br><span class="line">                <span class="string">'success'</span>: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(json.code == <span class="number">200</span>)&#123;</span><br><span class="line">                        $a.text(json.result);</span><br><span class="line">                        <span class="built_in">console</span>.log(<span class="string">'请求成功'</span>)</span><br><span class="line">                    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(json.code == <span class="number">403</span>)&#123;</span><br><span class="line">                        alert(<span class="string">'票数不足'</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="string">'error'</span>: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">'请求错误'</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>优化：将两个投票的方法合二为一</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">def make_comment(request, no):</span><br><span class="line">    ctx = &#123;<span class="string">'code'</span>: <span class="number">200</span>&#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'user'</span> <span class="keyword">in</span> request.session and request.session[<span class="string">'user'</span>]:</span><br><span class="line">        user = request.session[<span class="string">'user'</span>]</span><br><span class="line">        <span class="keyword">if</span> user.tcounter &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                # 去request里面拿path属性，就是你请求的url，拿到like or dislike</span><br><span class="line">                # /good/3,拿到主机或者域名是host，get_full_path</span><br><span class="line">                # s是我的资源，？后面是请求参数，服务器传递的查询字符串</span><br><span class="line">                teacher = Teacher.objects.get(pk=no)</span><br><span class="line">                # request.method是拿到请求的类型</span><br><span class="line">                <span class="keyword">if</span> request.path.startswith(<span class="string">'/good'</span>):</span><br><span class="line">                    teacher.good_count += <span class="number">1</span></span><br><span class="line">                    ctx[<span class="string">'result'</span>] = f<span class="string">'like(&#123;teacher.gcount&#125;)'</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    teacher.bad_count += <span class="number">1</span></span><br><span class="line">                    ctx[<span class="string">'result'</span>] = f<span class="string">'dislike(&#123;teacher.bcount&#125;)'</span></span><br><span class="line">                teacher.save()</span><br><span class="line">                user.tcounter -= <span class="number">1</span></span><br><span class="line">                # 改变tcounter</span><br><span class="line">                User.objects.filter(username__exact=user.username).\</span><br><span class="line">                    update(tcounter=user.tcounter)</span><br><span class="line">                request.session[<span class="string">'user'</span>] = user</span><br><span class="line">                # user.save()</span><br><span class="line">            # except Teacher.DoesNotExist:</span><br><span class="line">            #     ctx['code'] = 404</span><br><span class="line">            except:</span><br><span class="line">                <span class="keyword">return</span> render(request, <span class="string">'error.html'</span>, &#123;&#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ctx[<span class="string">'code'</span>] = <span class="number">403</span></span><br><span class="line">            ctx[<span class="string">'result'</span>] = <span class="string">'票数不足'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ctx[<span class="string">'code'</span>] = <span class="number">302</span></span><br><span class="line">        ctx[<span class="string">'result'</span>] = <span class="string">'请先登录'</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(json.dumps(ctx), content_type=<span class="string">'application/json'</span>, charset=<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/13/Django的使用之三：投票应用/" data-id="cjjl4o7s6000113klwqlq4s3h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/13/Django的使用之一：动态展示/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/13/Django的使用之二：注册登录/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/14/“mac-test”/">“mac_test”</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/13/Django的使用之一：动态展示/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/13/Django的使用之三：投票应用/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/13/Django的使用之二：注册登录/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
