@@ -79,17 +79,13 @@
 
 
 
-<meta name="description" content="###投票应用，给老师投票，且每个用户只有三票  1.将字典转换成json格式2.ajax请求  ####views.py文件 123456789101112131415161718192021222324252627def make_good_comment(request, no):    teacher = Teacher.objects.get(pk=no)    teacher.good">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Karen">
-<meta property="og:url" content="http://yoursite.com/2018/07/13/Django的使用之三：投票应用/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Karen">
-<meta property="og:description" content="###投票应用，给老师投票，且每个用户只有三票  1.将字典转换成json格式2.ajax请求  ####views.py文件 123456789101112131415161718192021222324252627def make_good_comment(request, no):    teacher = Teacher.objects.get(pk=no)    teacher.good">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-13T11:36:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Karen">
-<meta name="twitter:description" content="###投票应用，给老师投票，且每个用户只有三票  1.将字典转换成json格式2.ajax请求  ####views.py文件 123456789101112131415161718192021222324252627def make_good_comment(request, no):    teacher = Teacher.objects.get(pk=no)    teacher.good">
 
 
 
@@ -119,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/13/Django的使用之三：投票应用/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
 
 
 
-  <title> | Karen</title>
+  <title>Karen</title>
   
 
 
@@ -144,7 +140,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,9 +278,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -313,7 +310,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/13/Django的使用之三：投票应用/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -363,7 +362,9 @@
       
 
       
-        <p>###投票应用，给老师投票，且每个用户只有三票</p>
+        
+          
+            <p>###投票应用，给老师投票，且每个用户只有三票</p>
 <blockquote>
 <p>1.将字典转换成json格式<br>2.ajax请求</p>
 </blockquote>
@@ -375,6 +376,8 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        &#123;#绑定点击事件#&#125;</span><br><span class="line">        $(<span class="string">'.basic .button'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</span><br><span class="line">            &#123;#阻止a标签的默认行为#&#125;</span><br><span class="line">            evt.preventDefault();</span><br><span class="line">            &#123;#取到的原生js对象#&#125;</span><br><span class="line">            <span class="keyword">var</span> $a = $(evt.target);</span><br><span class="line">            &#123;#attr方法可以取属性也可以改属性，jquery的方法#&#125;</span><br><span class="line">            <span class="keyword">var</span> url = $a.attr(<span class="string">'href'</span>);</span><br><span class="line">            &#123;#传入一个json对象，#&#125;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                <span class="string">'url'</span>:url,</span><br><span class="line">                <span class="string">'type'</span>:<span class="string">'get'</span>,</span><br><span class="line">                <span class="string">'data'</span>:&#123;&#125;,</span><br><span class="line">                <span class="string">'dataType'</span>:<span class="string">'json'</span>,</span><br><span class="line">                <span class="string">'success'</span>: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(json.code == <span class="number">200</span>)&#123;</span><br><span class="line">                        $a.text(json.result);</span><br><span class="line">                        <span class="built_in">console</span>.log(<span class="string">'请求成功'</span>)</span><br><span class="line">                    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(json.code == <span class="number">403</span>)&#123;</span><br><span class="line">                        alert(<span class="string">'票数不足'</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="string">'error'</span>: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">'请求错误'</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 <p>优化：将两个投票的方法合二为一</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">def make_comment(request, no):</span><br><span class="line">    ctx = &#123;<span class="string">'code'</span>: <span class="number">200</span>&#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'user'</span> <span class="keyword">in</span> request.session and request.session[<span class="string">'user'</span>]:</span><br><span class="line">        user = request.session[<span class="string">'user'</span>]</span><br><span class="line">        <span class="keyword">if</span> user.tcounter &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                # 去request里面拿path属性，就是你请求的url，拿到like or dislike</span><br><span class="line">                # /good/3,拿到主机或者域名是host，get_full_path</span><br><span class="line">                # s是我的资源，？后面是请求参数，服务器传递的查询字符串</span><br><span class="line">                teacher = Teacher.objects.get(pk=no)</span><br><span class="line">                # request.method是拿到请求的类型</span><br><span class="line">                <span class="keyword">if</span> request.path.startswith(<span class="string">'/good'</span>):</span><br><span class="line">                    teacher.good_count += <span class="number">1</span></span><br><span class="line">                    ctx[<span class="string">'result'</span>] = f<span class="string">'like(&#123;teacher.gcount&#125;)'</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    teacher.bad_count += <span class="number">1</span></span><br><span class="line">                    ctx[<span class="string">'result'</span>] = f<span class="string">'dislike(&#123;teacher.bcount&#125;)'</span></span><br><span class="line">                teacher.save()</span><br><span class="line">                user.tcounter -= <span class="number">1</span></span><br><span class="line">                # 改变tcounter</span><br><span class="line">                User.objects.filter(username__exact=user.username).\</span><br><span class="line">                    update(tcounter=user.tcounter)</span><br><span class="line">                request.session[<span class="string">'user'</span>] = user</span><br><span class="line">                # user.save()</span><br><span class="line">            # except Teacher.DoesNotExist:</span><br><span class="line">            #     ctx['code'] = 404</span><br><span class="line">            except:</span><br><span class="line">                <span class="keyword">return</span> render(request, <span class="string">'error.html'</span>, &#123;&#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ctx[<span class="string">'code'</span>] = <span class="number">403</span></span><br><span class="line">            ctx[<span class="string">'result'</span>] = <span class="string">'票数不足'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ctx[<span class="string">'code'</span>] = <span class="number">302</span></span><br><span class="line">        ctx[<span class="string">'result'</span>] = <span class="string">'请先登录'</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(json.dumps(ctx), content_type=<span class="string">'application/json'</span>, charset=<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
+          
+        
       
     </div>
     
@@ -391,28 +394,12 @@
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/13/Django的使用之二：注册登录/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -422,11 +409,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -434,10 +424,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -645,10 +631,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
