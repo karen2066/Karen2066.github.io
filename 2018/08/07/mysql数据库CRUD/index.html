@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="mysql数据库CRUD​    本文从基础开始介绍mysql数据库的增删改查等基础知识 下载安装mysql数据库启动服务 services.msg  管理——&amp;gt;服务——&amp;gt;启动mysql  cmd——&amp;gt;net start mysql  偏好设置——&amp;gt;run（Mac）">
+<meta name="description" content="mysql数据库CRUD  本文从基础开始介绍mysql数据库的增删改查等基础知识 下载安装mysql数据库启动服务 services.msg  管理——&amp;gt;服务——&amp;gt;启动mysql  cmd——&amp;gt;net start mysql  偏好设置——&amp;gt;run（Mac）   ####停止服务  net stop mysql net restart mysql(重启)注：以管理员身份运">
 <meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql数据库CRUD">
 <meta property="og:url" content="http://yoursite.com/2018/08/07/mysql数据库CRUD/index.html">
 <meta property="og:site_name" content="Karen">
-<meta property="og:description" content="mysql数据库CRUD​    本文从基础开始介绍mysql数据库的增删改查等基础知识 下载安装mysql数据库启动服务 services.msg  管理——&amp;gt;服务——&amp;gt;启动mysql  cmd——&amp;gt;net start mysql  偏好设置——&amp;gt;run（Mac）">
+<meta property="og:description" content="mysql数据库CRUD  本文从基础开始介绍mysql数据库的增删改查等基础知识 下载安装mysql数据库启动服务 services.msg  管理——&amp;gt;服务——&amp;gt;启动mysql  cmd——&amp;gt;net start mysql  偏好设置——&amp;gt;run（Mac）   ####停止服务  net stop mysql net restart mysql(重启)注：以管理员身份运">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-07T12:38:30.000Z">
+<meta property="og:updated_time" content="2018-08-21T00:56:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql数据库CRUD">
-<meta name="twitter:description" content="mysql数据库CRUD​    本文从基础开始介绍mysql数据库的增删改查等基础知识 下载安装mysql数据库启动服务 services.msg  管理——&amp;gt;服务——&amp;gt;启动mysql  cmd——&amp;gt;net start mysql  偏好设置——&amp;gt;run（Mac）">
+<meta name="twitter:description" content="mysql数据库CRUD  本文从基础开始介绍mysql数据库的增删改查等基础知识 下载安装mysql数据库启动服务 services.msg  管理——&amp;gt;服务——&amp;gt;启动mysql  cmd——&amp;gt;net start mysql  偏好设置——&amp;gt;run（Mac）   ####停止服务  net stop mysql net restart mysql(重启)注：以管理员身份运">
 
 
 
@@ -364,7 +364,7 @@
       
 
       
-        <h3 id="mysql数据库CRUD"><a href="#mysql数据库CRUD" class="headerlink" title="mysql数据库CRUD"></a>mysql数据库CRUD</h3><p>​    本文从基础开始介绍mysql数据库的增删改查等基础知识</p>
+        <h3 id="mysql数据库CRUD"><a href="#mysql数据库CRUD" class="headerlink" title="mysql数据库CRUD"></a>mysql数据库CRUD</h3><p>  本文从基础开始介绍mysql数据库的增删改查等基础知识</p>
 <h4 id="下载安装mysql数据库"><a href="#下载安装mysql数据库" class="headerlink" title="下载安装mysql数据库"></a>下载安装mysql数据库</h4><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><ol>
 <li><p>services.msg</p>
 </li>
@@ -375,6 +375,45 @@
 <li><p>偏好设置——&gt;run（Mac）</p>
 </li>
 </ol>
+<p>####停止服务</p>
+<ol>
+<li>net stop mysql</li>
+<li>net restart mysql(重启)<br>注：以管理员身份运行<br> 如果要卸载，需要用installer卸载，否则将会有残余以后无法再次下载使用mysql</li>
+</ol>
+<p>启动客户端工具：<br>    在安装社区版mysql后会自动帮我们安装一个mysql的客户端，进入的方式有两种：<br>    mysql -u root -p 进入本机数据库（注意配置路径）<br>    或者从开始菜单进入<br>showdatabases; 查看所有数据库（自带4个数据库，mysql程序相关的元数据信息，mysql自己要用的）<br>select version();查看目前使用的版本<br>? 获取帮助<br>quit/exit 退出</p>
+<p>####SQL(Structured Query Language)<br>我们这里使用navicat for mysql可视化工具学习sql,sql语言是不区分大小写的</p>
+<ul>
+<li>DDL(数据定义语言): create/ drop/ alter</li>
+<li>DML(数据操纵语言): insert/ delete/ update</li>
+<li>DQL(数据查询语言): select</li>
+<li>DCL(数据控制语言): grant/ revoke/ begin/ commit/ rollback</li>
+</ul>
+<p>####数据定义语言</p>
+<p>#####如果指定的数据库存在则删除<br>    drop database if exists XXX;</p>
+<p>#####创建数据库并指定默认字符集<br>    create database XXX default charset utf8;</p>
+<p>#####切换到XXX数据库<br>    use XXX；</p>
+<p>#####关系型数据库通过二维表来创建</p>
+<p>######创建学生表,定义字段</p>
+<p>######主键（primary key）-能够标识唯一一条记录的列<br>    create table tb_student<br>    (<br>    stuid int not null comment ‘学号’,<br>    sname varchar(10) not null comment ‘姓名’,<br>    ssex bit default 1,<br>    stel char(11),<br>    sbirth date,<br>    primary key(stuid)<br>    );</p>
+<p>键的类型：int, varchar, bit……<br>非空约束：not null<br>默认值约束：<br>备注：comment<br>指定字符集：<br>指定排序规则：</p>
+<blockquote>
+<p>字段的三大类数据类型：<br>数值型（包括整数小数）<br>字符串<br>时间日期型</p>
+</blockquote>
+<p>为表指定存储引擎，指定字符集<br>看到表的结构：desc tb_student</p>
+<p>#####修改表<br>    插入新的字段<br>    alter table tb_student add columu asddr varchar(100);<br>    删除字段<br>    alter table tb_student drop columu stel;</p>
+<p>#####插入记录<br>    一次插入一条学生纪录<br>    insert into tb_student values(1001, ‘小白’, 1, ‘1999-3-08’, ‘北京’);<br>    选择性插入学生纪录，指定顺序<br>    insert into tb_student (sname, stuid) values (‘小红’, 1002)<br>    批量插入学生纪录<br>    insert into tb_student values<br>    (1004, ‘小花’, 0, ‘1995-7-08’, ‘江苏南京’),<br>    (1005， ‘小江’, 1, ‘1989-3-23’, ‘上海’),<br>    (1006， ‘小飞’， 1， ‘1997-8-30’，‘湖南长沙’);</p>
+<p>#####删除数据<br>    删除全表(一般不会使用)<br>    delete from tb_student;<br>    删除某一条记录<br>    delete from tb_student where stuid=1003;</p>
+<p>#####更新数据<br>    没有加条件，全表所有人的生日和住址都会被改变<br>    update tb_student set sbirth=’1999-2-03’, saddr=’四川成都’;<br>    更新某一条数据(通常情况下更新和删除单条数据都是以主键作为条件)<br>    update tb_student set sbirth=’1999-2-03’, saddr=’四川成都’ where stuid=1002;</p>
+<p>在sql中一个=是相等的意思，如果想要赋值前面加set</p>
+<p><strong>批量更新数据</strong></p>
+<ul>
+<li>使用or连接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update tb_student set saddr=&apos;统一地址&apos; where stuid=1004 or stuid=1005 or stuid=1006;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用集合</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update tb_student set addr=&apos;统一地址&apos; where stuid in (1004, 1005, 1006);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -498,7 +537,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -511,7 +550,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
