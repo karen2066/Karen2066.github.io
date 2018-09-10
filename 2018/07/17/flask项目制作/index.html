@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next " lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="//main.css?v=" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="用户模块的项目拆分：  注册：form提交，ajax加载  post  前端可以有一层验证，但是后端必须要有  验证数据完整性： 验证手机号码的正确性：  ​    re.match()：第一位开始 ​    re.search():任意位置开始  验证密码： 保存用户数据：  ​    如果有用户信息： ​    如果没有： ​        写字段并保存 返回  登录  mobile pass">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Karen">
+<meta property="og:url" content="http://yoursite.com/2018/07/17/flask项目制作/index.html">
+<meta property="og:site_name" content="Karen">
+<meta property="og:description" content="用户模块的项目拆分：  注册：form提交，ajax加载  post  前端可以有一层验证，但是后端必须要有  验证数据完整性： 验证手机号码的正确性：  ​    re.match()：第一位开始 ​    re.search():任意位置开始  验证密码： 保存用户数据：  ​    如果有用户信息： ​    如果没有： ​        写字段并保存 返回  登录  mobile pass">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-19T13:05:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Karen">
+<meta name="twitter:description" content="用户模块的项目拆分：  注册：form提交，ajax加载  post  前端可以有一层验证，但是后端必须要有  验证数据完整性： 验证手机号码的正确性：  ​    re.match()：第一位开始 ​    re.search():任意位置开始  验证密码： 保存用户数据：  ​    如果有用户信息： ​    如果没有： ​        写字段并保存 返回  登录  mobile pass">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: '',
+    version: '',
+    sidebar: "",
+    fancybox: ,
+    tabs: ,
+    motion: "",
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title> | Karen</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container  page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Karen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/flask项目制作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karen2066">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Karen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>用户模块的项目拆分：</p>
+<ul>
+<li>注册：form提交，ajax加载</li>
+</ul>
+<p>post </p>
+<p>前端可以有一层验证，但是后端必须要有</p>
+<ol>
+<li>验证数据完整性：</li>
+<li>验证手机号码的正确性：</li>
+</ol>
+<p>​    re.match()：第一位开始</p>
+<p>​    re.search():任意位置开始</p>
+<ol start="3">
+<li>验证密码：</li>
+<li>保存用户数据：</li>
+</ol>
+<p>​    如果有用户信息：</p>
+<p>​    如果没有：</p>
+<p>​        写字段并保存</p>
+<p>返回</p>
+<ul>
+<li>登录</li>
+</ul>
+<p>mobile</p>
+<p>password</p>
+<ol>
+<li><p>验证数据完整性</p>
+</li>
+<li><p>验证手机正确性</p>
+</li>
+<li><p>验证用户存不存在</p>
+</li>
+<li><p>验证密码是否正确</p>
+<p>​        验证用户成功：向session写东西</p>
+<p>session</p>
+<p>配置</p>
+<p>​    app.config[‘SECRET_KEY’] = ‘secret_key’</p>
+<p>​    app.config[‘SESSION_TYPE’] = ‘redis’</p>
+<p>​    app.config[‘SESSION_REDIS ‘] = redis.Redis(host=’127.0.0.1’, port=6379)</p>
+<p>写入redis数据库</p>
+<p>​    session[‘user_id’] = user.id</p>
+<p>​</p>
+<p>装饰器</p>
+<p>上传头像</p>
+<p>注销</p>
+<p>​    删除session中的值</p>
+<p>​</p>
+</li>
+</ol>
+<p>​    上传图片</p>
+<p>装饰器</p>
+<p>上传头像</p>
+<p>注销</p>
+<p>项目搭建：</p>
+<p>环境：</p>
+<ol>
+<li><p>创建： virtualenv  –no-site-packages flaskenv</p>
+<p>python3创建虚拟环境的方式：python -m venv 名字</p>
+</li>
+<li><p>激活 ：</p>
+<p>windows:</p>
+<ol>
+<li><p>cd flaskenv/Script</p>
+</li>
+<li><p>activate/deactivate</p>
+<p>Linux,Mac:</p>
+<p>​    source flaskenv/Script/bin/activate</p>
+</li>
+</ol>
+</li>
+<li><p>安装flask：</p>
+<p>​    pip3 install flask</p>
+<p>​        创建需要安装环境的txt文件：</p>
+<p>​            requirement.txt</p>
+<p>​            pip install -r requirement.txt</p>
+<ol start="4">
+<li>指定环境</li>
+</ol>
+<p>​</p>
+<p>一个最小的web：</p>
+<p>按照MVC思路拆分项目</p>
+<p>​</p>
+<p>​</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/13/Django的使用之三：投票应用/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/17/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">karen2066</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">karen2066</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="//src/utils.js?v="></script>
+
+  <script type="text/javascript" src="//src/motion.js?v="></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="//src/scrollspy.js?v="></script>
+<script type="text/javascript" src="//src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="//src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

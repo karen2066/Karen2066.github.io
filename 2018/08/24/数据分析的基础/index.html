@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next " lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="//main.css?v=" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+  <meta name="keywords" content="数据分析," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="以下是学习数据分析所做的笔记，深入浅出的介绍了数据分析及使用的工具 ####ipython是什么呢？就是调用python解释器的交互式环境 %run run命令，在ipython中执行.py程序，在一个空的命名空间执行% ipython的魔术命令：  数据的维度 维度：一组数据的组织形式  一维数据：有对等关系的有序或无序数据构成，采用线性方式组织。对应列表、数组和集合等概念  列表和数组：  同">
+<meta name="keywords" content="数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据分析的基础">
+<meta property="og:url" content="http://yoursite.com/2018/08/24/数据分析的基础/index.html">
+<meta property="og:site_name" content="Karen">
+<meta property="og:description" content="以下是学习数据分析所做的笔记，深入浅出的介绍了数据分析及使用的工具 ####ipython是什么呢？就是调用python解释器的交互式环境 %run run命令，在ipython中执行.py程序，在一个空的命名空间执行% ipython的魔术命令：  数据的维度 维度：一组数据的组织形式  一维数据：有对等关系的有序或无序数据构成，采用线性方式组织。对应列表、数组和集合等概念  列表和数组：  同">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/魔术命令.png">
+<meta property="og:image" content="http://yoursite.com/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827111756365.png">
+<meta property="og:image" content="http://yoursite.com/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827112320141.png">
+<meta property="og:image" content="http://yoursite.com/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827112612779.png">
+<meta property="og:image" content="http://yoursite.com/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827113104950.png">
+<meta property="og:image" content="http://yoursite.com/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827113545736.png">
+<meta property="og:image" content="http://yoursite.com/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827113704020.png">
+<meta property="og:image" content="http://yoursite.com/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827113833404.png">
+<meta property="og:image" content="http://yoursite.com/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827114558540.png">
+<meta property="og:image" content="http://yoursite.com/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827114833920.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/创建数组.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/numpy方法.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/hanshu.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/函数2.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/np.linspace.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/变换.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/类型转换.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/转换成数组.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/多维数组索引.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/多维数组的切片.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/数组运算.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/ndarray的一元函数.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/numpy一元函数.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/二元函数.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/保存csv文件.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/例子csv.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/例子2csv.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/读取csv.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/例子读取csv.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/多维数组的读取.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/tofile例子.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/读取文件fromfile.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/fromfile例子.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/fromfile读取二进制文件.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/numpy文件存储.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/例子numpy文件存储.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/numpy的随机数函数1.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/rand例子.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/randn.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/randint.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/种子随机数.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/随机数函数2.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/高级随机数函数例子1.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/高级随机数函数2.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/gjsjshs3.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/随机数数组.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/正态分布数组.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/np.random的统计函数.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/random统计函数.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/random的统计函数2.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/统计函数例子2.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/梯度函数.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/梯度值例子.png">
+<meta property="og:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/梯度例子2.png">
+<meta property="og:updated_time" content="2018-08-31T09:45:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据分析的基础">
+<meta name="twitter:description" content="以下是学习数据分析所做的笔记，深入浅出的介绍了数据分析及使用的工具 ####ipython是什么呢？就是调用python解释器的交互式环境 %run run命令，在ipython中执行.py程序，在一个空的命名空间执行% ipython的魔术命令：  数据的维度 维度：一组数据的组织形式  一维数据：有对等关系的有序或无序数据构成，采用线性方式组织。对应列表、数组和集合等概念  列表和数组：  同">
+<meta name="twitter:image" content="http://yoursite.com/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/魔术命令.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: '',
+    version: '',
+    sidebar: "",
+    fancybox: ,
+    tabs: ,
+    motion: "",
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>数据分析的基础 | Karen</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container  page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Karen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/数据分析的基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karen2066">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Karen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据分析的基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以下是学习数据分析所做的笔记，深入浅出的介绍了数据分析及使用的工具</p>
+<p>####ipython是什么呢？就是调用python解释器的交互式环境</p>
+<p>%run run命令，在ipython中执行.py程序，在一个空的命名空间执行%</p>
+<p>ipython的魔术命令：</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/魔术命令.png" alt="魔术命令"></p>
+<h4 id="数据的维度"><a href="#数据的维度" class="headerlink" title="数据的维度"></a>数据的维度</h4><ul>
+<li><p>维度：一组数据的组织形式</p>
+</li>
+<li><p>一维数据：有对等关系的有序或无序数据构成，采用线性方式组织。对应列表、数组和集合等概念</p>
+</li>
+<li><p>列表和数组：</p>
+<p> 同：都是一组数据的有序结构</p>
+<pre><code>不同：列表的数据类型不同，而数组的数据类型是相同的
+</code></pre></li>
+<li><p>二维数据：</p>
+<p>由一维数据构成，是一维数据的组合形式。表格时典型的二维数据，其中表头可以是二维数据的一部分，也可以在二维数据之外。</p>
+</li>
+</ul>
+<p>除此之外还有多维数据存在，多维数据是由一维或二维数据在新的维度上扩展形成的</p>
+<p>最后是高维数据，就是用键值对讲数据组织起来形成的数据组织方式。高维数据仅利用最基本的二元关系，就能展示数据间的复杂结构。那么这些数据维度在python中是如何表示的呢？</p>
+<h4 id="数据维度的python表示"><a href="#数据维度的python表示" class="headerlink" title="数据维度的python表示"></a>数据维度的python表示</h4><p>一维数据：列表（有序）和集合（无序）类型</p>
+<p>二维数据：二维列表</p>
+<p>多维数据：多维列表</p>
+<p>高维数据：字典类型或者数据表示格式（json，xml，yaml）</p>
+<p>####NumPy</p>
+<p>NumPy是一个开源的python科学计算基础库</p>
+<p><img src="/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827111756365.png" alt="image-20180827111756365"></p>
+<p><img src="/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827112320141.png" alt="image-20180827112320141"></p>
+<p>numpy底层是使用c语言，速度快，效率高</p>
+<p>一方面是编程上，简单方便。一方面是效率上高效。</p>
+<p><img src="/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827112612779.png" alt="image-20180827112612779"></p>
+<p>ndarray在程序中的别名是:array</p>
+<p>描述ndarray的基本方式<br>轴(axis)：保存数据的维度</p>
+<p>秩(rank)：轴的数量</p>
+<p>ndarray对象的属性：</p>
+<p><img src="/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827113104950.png" alt="image-20180827113104950"></p>
+<p>numpy定义的元素类型：</p>
+<p><img src="/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827113545736.png" alt="image-20180827113545736"></p>
+<p>无符号：<br><img src="/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827113704020.png" alt="image-20180827113704020"></p>
+<p>复数类型：</p>
+<p><img src="/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827113833404.png" alt="image-20180827113833404"></p>
+<p> 为什么需要这么多的数据类型：</p>
+<p><img src="/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827114558540.png" alt="image-20180827114558540"></p>
+<p>ndaray也可以由非同质对象构成：</p>
+<p><img src="/var/folders/5c/s5kv1b557475k1xhv5hfg67r0000gn/T/abnerworks.Typora/image-20180827114833920.png" alt="image-20180827114833920"></p>
+<h4 id="ndarray数组的创建和变换"><a href="#ndarray数组的创建和变换" class="headerlink" title="ndarray数组的创建和变换"></a>ndarray数组的创建和变换</h4><p>创建ndarray数组的方式有四种：</p>
+<ul>
+<li><p>从Python中的列表、元组等类型创建ndarray数组</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/创建数组.png" alt="创建数组"></p>
+<p>使用np.array()函数创建，可以指定数据类型</p>
+</li>
+</ul>
+<ul>
+<li>使用NumPy中函数创建ndarray数组，如：arange，ones，zeros等</li>
+</ul>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/numpy方法.png" alt="image-20180827124428961"></p>
+<p>np.arange(n): 生成一个递增的整数序列</p>
+<p>np.ones(shape): 生成一个m行，n列的数组，也可以用来生成多维数组</p>
+<p>np.zeros(shape): 生成一个m行n列，值全部为0的数组</p>
+<p>ones，zeros生成的都是浮点数类型，除非用户来指定</p>
+<p>np.full(shape, val): 生成一个元素值为val的数组</p>
+<p>np.eye(n): 生成一个n*n的单位矩阵，对角线为1，其余为0</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/hanshu.png" alt="hanshu"></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/函数2.png" alt="函数2"></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/np.linspace.png" alt="np.linspace"></p>
+<p>第一个参数是起始位置，第二是结束位置，第三个是希望的元素个数</p>
+<p>生成浮点数</p>
+<p>endpoint是否是开区间</p>
+<p>numpy将输出的数基本都是浮点数，除了arange这样的函数，因为numpy是科学计算的包</p>
+<ul>
+<li>从字节流（raw bytes）中创建ndarray数组</li>
+</ul>
+<ul>
+<li>从文件中读取特定格式，创建ndarray数组。</li>
+</ul>
+<h5 id="ndarray数组的变换"><a href="#ndarray数组的变换" class="headerlink" title="ndarray数组的变换"></a>ndarray数组的变换</h5><p><strong>对于创建后的ndarray数组，可以对其进行维度变换和元素类型变换</strong></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/变换.png" alt="变换"></p>
+<p><strong>ndarray数组的类型变换</strong></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/类型转换.png" alt="类型转换"></p>
+<p><strong>ndarray数组向列表转换</strong></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/转换成数组.png" alt="转换成数组"></p>
+<p>列表是python原始的数据类型，比数组与原生程序更加适应</p>
+<h4 id="ndarray数组的操作（索引和切片）"><a href="#ndarray数组的操作（索引和切片）" class="headerlink" title="ndarray数组的操作（索引和切片）"></a>ndarray数组的操作（索引和切片）</h4><blockquote>
+<p>索引：获取数组中特定位置元素的过程</p>
+<p>切片：获取数组元素子集的过程</p>
+</blockquote>
+<p>#####一维数组的索引和切片：与python的列表类似</p>
+<p>提供两种顺序方式：</p>
+<ol>
+<li>从0开始向右侧递增；从-1开始向左侧递减</li>
+<li><p>切片的基本方法[m:n:y]</p>
+<pre><code>m:开始索引
+
+n:结束索引（不包含）
+
+y:步长
+</code></pre></li>
+</ol>
+<h5 id="多维数组的索引"><a href="#多维数组的索引" class="headerlink" title="多维数组的索引"></a>多维数组的索引</h5><p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/多维数组索引.png" alt="多维数组索引"></p>
+<h5 id="多维数组的切片："><a href="#多维数组的切片：" class="headerlink" title="多维数组的切片："></a>多维数组的切片：</h5><p>​    在每个维度上，用户给出一个切片空间，将不同的切片空间组织起来，形成的一个子集的获取方式</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/多维数组的切片.png" alt="多维数组的切片"></p>
+<p>我们可以将三维坐标看成一栋建筑，两层楼，每层3行4列共12个房间。选定任意一个房间，即楼层、行号和列号。例如，选定第1层楼、第1行、第1列的房间，冒号就是选定所有的楼层（不关心楼层），所有行列，：：2就是步长为2，每隔一个元素选取一个元素。多个冒号可以用省略号代替。</p>
+<h4 id="ndarray的运算"><a href="#ndarray的运算" class="headerlink" title="ndarray的运算"></a>ndarray的运算</h4><p>标量：一个数据就叫标量</p>
+<p>数组与标量之间的运算等价于数组的每一个元素都与标量进行运算</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/数组运算.png" alt="数组运算"></p>
+<h5 id="一元运算"><a href="#一元运算" class="headerlink" title="一元运算"></a>一元运算</h5><p>一元函数，对单一ndarray数组进行的运算，就是对每一个元素的运算<br><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/ndarray的一元函数.png" alt="ndarray的一元函数"></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/numpy一元函数.png" alt="numpy一元函数"></p>
+<p>基本所有的一元函数都是新生成了数组</p>
+<h5 id="二元函数"><a href="#二元函数" class="headerlink" title="二元函数"></a>二元函数</h5><p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/二元函数.png" alt="二元函数"></p>
+<h4 id="数据的csv存储"><a href="#数据的csv存储" class="headerlink" title="数据的csv存储"></a>数据的csv存储</h4><h5 id="什么是csv文件"><a href="#什么是csv文件" class="headerlink" title="什么是csv文件"></a>什么是csv文件</h5><p>csv(Comma-Separated Value, 逗号分隔值)</p>
+<p>csv是一种常见的文件格式，用来存储批量数据</p>
+<p>在numpy中有两个函数可以向文件中写入csv格式，并从csv文件中读取数据</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/保存csv文件.png" alt="保存csv文件"></p>
+<p>fmt是用户主要修改的参数，默认是使用科学技术法保留18位小数</p>
+<blockquote>
+<p> np的savetxt函数并不是为了特定的生成csv格式的文件而生，它可以生成任何带有逗号分隔或其他字符分割的文件，但由于csv文件的普遍使用所以我们一般用来生成csv格式的文件</p>
+</blockquote>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/例子csv.png" alt="例子csv"></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/例子2csv.png" alt="例子2csv"></p>
+<h5 id="读取csv格式的数据"><a href="#读取csv格式的数据" class="headerlink" title="读取csv格式的数据"></a>读取csv格式的数据</h5><p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/读取csv.png" alt="读取csv"></p>
+<p>读取例子：</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/例子读取csv.png" alt="例子读取csv"></p>
+<p>​    但csv文件也有局限性：</p>
+<p>​    csv智能有效存储一维和二维数组，np.savetxt()/np.loadtxt()只能有效存储一维和二维数组。那么下面就来看看多维数据的存储方法</p>
+<h5 id="多维数据的存储"><a href="#多维数据的存储" class="headerlink" title="多维数据的存储"></a>多维数据的存储</h5><p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/多维数组的读取.png" alt="多维数组的读取"></p>
+<p>例子：</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/tofile例子.png" alt="tofile例子"></p>
+<p>​    与csv文件的不同在于，这个文件没有维度信息，只是将数组中的所有元素列出并输出到这个文件中</p>
+<p>​    如果不指定第二个参数，数据分割字符串，会生成二进制的文件，二进制文件无法用文本编辑器读取，但是二进制文件占用的空间更少，我们只能将它作为数据备份的一种方式</p>
+<h5 id="从二进制文件-文本文件还原数据"><a href="#从二进制文件-文本文件还原数据" class="headerlink" title="从二进制文件\文本文件还原数据"></a>从二进制文件\文本文件还原数据</h5><blockquote>
+<p>无论什么样的数据方法，从文件中读回元素的时候都要指定文件数据类型，因为只有指定了数据类型才能正确解析数据内容，默认的dtype是float类型</p>
+</blockquote>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/读取文件fromfile.png" alt="读取文件fromfile"></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/fromfile例子.png" alt="fromfile例子"></p>
+<blockquote>
+<p>在读取文件的时候，维度信息丢失，必须指定维度信息才能还原数据</p>
+</blockquote>
+<h5 id="读取二进制文件"><a href="#读取二进制文件" class="headerlink" title="读取二进制文件"></a>读取二进制文件</h5><p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/fromfile读取二进制文件.png" alt="fromfile读取二进制文件"></p>
+<p><strong>注意：该方法需要读取时知道存入文件时的数组维度和元素类型a.tofile()和np.fromfile()需要配合使用</strong></p>
+<p>​    如何知道存入文件时的数组维度和元素类型呢？方法是在写一个文件，将数组的维度和元素类型作为元数据文件存储起来，在读取文件时打开元数据文件获取信息还原数组，虽然有一些麻烦，但是对于大规模数据的存储是很有效的</p>
+<h5 id="numpy提供的便捷的多维文件存储方法"><a href="#numpy提供的便捷的多维文件存储方法" class="headerlink" title="numpy提供的便捷的多维文件存储方法"></a>numpy提供的便捷的多维文件存储方法</h5><p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/numpy文件存储.png" alt="numpy文件存储"></p>
+<p>savez就是压缩文件的存储</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/例子numpy文件存储.png" alt="例子numpy文件存储"></p>
+<p>​    这个自带的方法可以默认还原文件的维度和数据类型，十分便捷。因为这个方法是用二进制的方式将文件保存起来，而将数据的维度和类型以元信息的方式写到了第一行中，load函数在解析时通过解析第一行数据还原数组</p>
+<p>​    如果我们的程序中间需要文件缓存，那么使用save和load方法是非常有效便捷的一种</p>
+<p>​    如果你希望程序能够与其他的程序做数据交互和对接，那么你需要考虑使用csv文件，或者使用tofile方法生成一个其他程序可以使用的文件。</p>
+<h4 id="NumPy的随机数函数"><a href="#NumPy的随机数函数" class="headerlink" title="NumPy的随机数函数"></a>NumPy的随机数函数</h4><p>python的内置函数random库为一般的标量参数提供随机数</p>
+<p>在NumPy库中有一个相似的函数</p>
+<ul>
+<li>np.random.*</li>
+<li>np.random.randn()</li>
+<li>np.random.rand()</li>
+<li>np.random.randint()</li>
+</ul>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/numpy的随机数函数1.png" alt="numpy的随机数函数1"></p>
+<p>均匀分布每一个元素出现的概率都是相同的</p>
+<p>例子：</p>
+<p><strong>均匀随机浮点数</strong></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/rand例子.png" alt="rand例子"></p>
+<p><strong>标准正态分布随机浮点数</strong></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/randn.png" alt="randn"></p>
+<p><strong>随机整数数组</strong></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/randint.png" alt="randint"></p>
+<p><strong>生成指定个相同的随机数</strong></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/种子随机数.png" alt="种子随机数"></p>
+<p>可以在测试时得到相同的产生的随机数组</p>
+<h5 id="高级的随机数函数"><a href="#高级的随机数函数" class="headerlink" title="高级的随机数函数"></a>高级的随机数函数</h5><p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/随机数函数2.png" alt="随机数函数2"></p>
+<p>例子1:高级的洗牌（混淆）函数，改变数组a的第一轴随机排序<br><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/高级随机数函数例子1.png" alt="高级随机数函数例子1"></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/高级随机数函数2.png" alt="高级随机数函数2"></p>
+<p>例子2：<br><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/gjsjshs3.png" alt="gjsjshs3"></p>
+<p>#####高级的随机数数组函数:</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/随机数数组.png" alt="随机数数组"></p>
+<p>例子1:</p>
+<p>正太分布数组</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/正态分布数组.png" alt="正态分布数组"></p>
+<p>正态分布是围绕某一均值，在特定方差下，一种随机变量取值的空间可能</p>
+<h4 id="NumPy的统计函数"><a href="#NumPy的统计函数" class="headerlink" title="NumPy的统计函数"></a>NumPy的统计函数</h4><blockquote>
+<p> 统计函数顾名思义就是能够对数据中的信息进行统计运算的函数,NumPy提供的统计类函数直接使用函数名来调用</p>
+</blockquote>
+<ul>
+<li><p>np.std()</p>
+</li>
+<li><p>np.var()</p>
+</li>
+<li><p>np.average()</p>
+</li>
+</ul>
+<p><strong>np.random的统计函数1:</strong></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/np.random的统计函数.png" alt="np.random的统计函数"></p>
+<p>期望：即算术平均和</p>
+<p>默认的是axis=None是统计函数的标配参数，即不关心数据的维度，对所有的元素操作<br>例子：<br><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/random统计函数.png" alt="random统计函数"></p>
+<p><strong>统计函数2：</strong></p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/random的统计函数2.png" alt="random的统计函数2"></p>
+<p>argmin(a)/argmax(a):获取最大值和最小值的被扁平化形成一维之后的位置（下标）</p>
+<p>例子：</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/统计函数例子2.png" alt="统计函数例子2"></p>
+<p>tips：median函数获取中位数是一种运算，是通过公式求得的</p>
+<h4 id="NumPy的梯度函数"><a href="#NumPy的梯度函数" class="headerlink" title="NumPy的梯度函数"></a>NumPy的梯度函数</h4><p>NumPy中的梯度函数只有一个：</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/梯度函数.png" alt="梯度函数"></p>
+<p>梯度：是指连续值之间的变化率，即斜率</p>
+<p>​    在xy坐标轴中有连续的三个值，它们的Y轴值为a，b，c。我们计算b的梯度（斜率）就是用后一个值减去前面一个值的差除以它的后一个值到前一个值之间的距离。就是：(c-a)/2</p>
+<p>​    最后一个值就是本身减去上一个值，除上距离</p>
+<p>例子：</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/梯度值例子.png" alt="梯度值例子"></p>
+<p>二维函数计算梯度值与一维函数类似：</p>
+<p><img src="/Users/lilamei/blog/hexo/source/_posts/数据分析的基础/梯度例子2.png" alt="梯度例子2"></p>
+<p>​    梯度变化了元素的变化率，特别是我们在处理图像和声音时，梯度有助于我们发现图像和声音的边缘。在变化明显的地方，梯度可以明显的发现。所以在进行图像和声音等多媒体运算时非常有用。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/23/数据分析-————-4/" rel="next" title="数据分析 ———— 4">
+                <i class="fa fa-chevron-left"></i> 数据分析 ———— 4
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/24/网络爬虫6——-Selenium/" rel="prev" title="网络爬虫6— Selenium">
+                网络爬虫6— Selenium <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">karen2066</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">karen2066</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="//src/utils.js?v="></script>
+
+  <script type="text/javascript" src="//src/motion.js?v="></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="//src/scrollspy.js?v="></script>
+<script type="text/javascript" src="//src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="//src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

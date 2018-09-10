@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next " lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="//main.css?v=" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+  <meta name="keywords" content="python网络爬虫," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="爬虫初步爬虫概念都有哪些语言可以实现爬虫​    （1）php, 号称世界上最好的语言，可以实现爬虫，但做的不好，天生对多进程和多线程支持的不好 ​    （2）java，可以实现，而且做的非常好，是python爬虫最主要的竞争对手, 但语言不简洁，代码臃肿，重构成本高    （3）c、c++，也可以实现爬虫，非常强大，但是不是一个好的选择    （4）python，可以实现，号称世界上最优雅的语">
+<meta name="keywords" content="python网络爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络爬虫1--http协议和urllib">
+<meta property="og:url" content="http://yoursite.com/2018/08/07/网络爬虫1-http协议和urllib/index.html">
+<meta property="og:site_name" content="Karen">
+<meta property="og:description" content="爬虫初步爬虫概念都有哪些语言可以实现爬虫​    （1）php, 号称世界上最好的语言，可以实现爬虫，但做的不好，天生对多进程和多线程支持的不好 ​    （2）java，可以实现，而且做的非常好，是python爬虫最主要的竞争对手, 但语言不简洁，代码臃肿，重构成本高    （3）c、c++，也可以实现爬虫，非常强大，但是不是一个好的选择    （4）python，可以实现，号称世界上最优雅的语">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/08/07/网络爬虫1-http协议和urllib/网络爬虫1-http协议和urllib/urllib.request.urlopen-result.png">
+<meta property="og:updated_time" content="2018-08-09T04:02:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络爬虫1--http协议和urllib">
+<meta name="twitter:description" content="爬虫初步爬虫概念都有哪些语言可以实现爬虫​    （1）php, 号称世界上最好的语言，可以实现爬虫，但做的不好，天生对多进程和多线程支持的不好 ​    （2）java，可以实现，而且做的非常好，是python爬虫最主要的竞争对手, 但语言不简洁，代码臃肿，重构成本高    （3）c、c++，也可以实现爬虫，非常强大，但是不是一个好的选择    （4）python，可以实现，号称世界上最优雅的语">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/07/网络爬虫1-http协议和urllib/网络爬虫1-http协议和urllib/urllib.request.urlopen-result.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: '',
+    version: '',
+    sidebar: "",
+    fancybox: ,
+    tabs: ,
+    motion: "",
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>网络爬虫1--http协议和urllib | Karen</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container  page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Karen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/网络爬虫1-http协议和urllib/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karen2066">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Karen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络爬虫1--http协议和urllib</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="爬虫初步"><a href="#爬虫初步" class="headerlink" title="爬虫初步"></a>爬虫初步</h3><h4 id="爬虫概念"><a href="#爬虫概念" class="headerlink" title="爬虫概念"></a>爬虫概念</h4><h5 id="都有哪些语言可以实现爬虫"><a href="#都有哪些语言可以实现爬虫" class="headerlink" title="都有哪些语言可以实现爬虫"></a>都有哪些语言可以实现爬虫</h5><p>​    （1）php, 号称世界上最好的语言，可以实现爬虫，但做的不好，天生对多进程和多线程支持的不好</p>
+<p>​    （2）java，可以实现，而且做的非常好，是python爬虫最主要的竞争对手, 但语言不简洁，代码臃肿，重构成本高<br>    （3）c、c++，也可以实现爬虫，非常强大，但是不是一个好的选择<br>    （4）python，可以实现，号称世界上最优雅的语言，代码简洁，学习成本低，执行效率也好，而且还有一个非常强大的爬虫框架   scrapy</p>
+<h4 id="通用爬虫"><a href="#通用爬虫" class="headerlink" title="通用爬虫"></a>通用爬虫</h4><p>​        例子：百度、谷歌、360、搜狗、必应等等，搜索引擎</p>
+<p>​        工作：<br>            （1）爬取互联网所有的数据<br>            （2）对数据存储并且处理<br>            （3）给用户提供检索服务<br>        如何让百度抓取你的网站？<br>            （1）静静地等待，百度会和DNS服务商合作<br>            （2）主动提交自己的url<br>            （3）在其它网站设置友情链接<br>        我的网站不想让百度抓取？<br>            君子协议，口头协议，robots协议<br>            存放到网站的根目录下，限制搜索引擎可以爬取哪些，不可以爬取哪些</p>
+<pre><code>##### 如何提升网站排名（SEO）
+</code></pre><p>​            （1）pagerank值排名，根据点击量、浏览量等，相当靠谱</p>
+<p>​            （2）竞价排名</p>
+<pre><code>##### 通用爬虫缺点：
+</code></pre><p>​            （1）抓取很多数据都是无效的</p>
+<p>​            （2）不能根据自己的需求抓取数据</p>
+<h4 id="聚焦爬虫"><a href="#聚焦爬虫" class="headerlink" title="聚焦爬虫"></a>聚焦爬虫</h4><p>​        根据自己特定的需求，来抓取指定的数据</p>
+<p>​        如何实现聚焦爬虫？<br>        网页的特点：<br>        （1）网页都有自己唯一的url<br>        （2）网页都是由html组成<br>        （3）网页传输都是使用http、https协议</p>
+<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>​    （1）给一个url</p>
+<p>​    （2）模拟浏览器发送http请求<br>    （3）从html结构中提取指定的数据，从字符串中根据规则提取指定数据</p>
+<h5 id="开发环境："><a href="#开发环境：" class="headerlink" title="开发环境："></a>开发环境：</h5><p>​        windows系统，python3.x（64位），sublime编辑器，pycharm，vscode</p>
+<h4 id="整体内容："><a href="#整体内容：" class="headerlink" title="整体内容："></a>整体内容：</h4><p>​        （1）涉及到的python库</p>
+<p>​            urllib,requests,selenium,jsonpath,lxml等一些库<br>        （2）解析内容<br>            正则表达式解析，bs4解析，xpath解析，jsonpath解析<br>        （3）采集动态html<br>            DOM操作，动态的添加或者删除节点，selenium+phantomjs<br>        （4）scrapy框架<br>            异步高性能网络爬虫框架的学习<br>        （5）scrapy-redis分布式部署<br>            在scrapy的基础上，多了一套分布式部署的组件<br>        （6）涉及到的爬虫-反爬虫-反反爬虫之间的斗争<br>            反爬会伤害真实的用户，一般情况下，反爬也就这么两点：第一个UA，第二个封ip，第三个验证码，光学识别，打码平台<br>            换思路解决问题：其他网站，手机端等</p>
+<h4 id="关于http协议"><a href="#关于http协议" class="headerlink" title="关于http协议"></a>关于http协议</h4><h4 id="http和https的区别"><a href="#http和https的区别" class="headerlink" title="http和https的区别"></a>http和https的区别</h4><p>​        HTTPS和HTTP的区别主要如下：<br>    　　1、https协议需要到ca申请证书，一般免费证书较少，因而需要一定费用。<br>    　　2、http是超文本传输协议，信息是明文传输，https则是具有安全性的ssl加密传输协议。<br>    　　3、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。<br>    　　4、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。</p>
+<h4 id="加密：公钥私钥"><a href="#加密：公钥私钥" class="headerlink" title="加密：公钥私钥"></a>加密：公钥私钥</h4><p>​        客户端：123456用秘钥加密=======》服务端：用秘钥解密得到123456<br>            秘钥相同称之为对称加解密<br>            秘钥不相同称之为非对称加解密<br>        客户端：123456用公钥加密=======》服务端：用私钥解密得到123456<br>    http协议学习：</p>
+<h4 id="请求：包含请求行、请求头、请求内容"><a href="#请求：包含请求行、请求头、请求内容" class="headerlink" title="请求：包含请求行、请求头、请求内容"></a>请求：包含请求行、请求头、请求内容</h4><p>请求行：请求方式、请求资源、协议版本号</p>
+<p>请求头：</p>
+<ul>
+<li><p>accept:浏览器通过这个头告诉服务器，它所支持的数据类型</p>
+</li>
+<li><p>Accept-Charset: 浏览器通过这个头告诉服务器，它支持哪种字符集</p>
+</li>
+<li><p>Accept-Encoding：浏览器通过这个头告诉服务器，支持的压缩格式</p>
+</li>
+<li><p>Accept-Language：浏览器通过这个头告诉服务器，它的语言环境</p>
+</li>
+<li><p>Host：浏览器通过这个头告诉服务器，想访问哪台主机<br>If-Modified-Since: 浏览器通过这个头告诉服务器，缓存数据的时间        　</p>
+</li>
+<li><p>Referer：浏览器通过这个头告诉服务器，客户机是哪个页面来的  防盗链</p>
+</li>
+<li><p>Connection：浏览器通过这个头告诉服务器，请求完后是断开链接还是何持链接</p>
+</li>
+<li><p>X-Requested-With: XMLHttpRequest  代表是ajax的请求</p>
+<h4 id="响应：响应行、响应头、响应内容"><a href="#响应：响应行、响应头、响应内容" class="headerlink" title="响应：响应行、响应头、响应内容"></a>响应：响应行、响应头、响应内容</h4></li>
+</ul>
+<h5 id="响应行里面，常见的状态码"><a href="#响应行里面，常见的状态码" class="headerlink" title="响应行里面，常见的状态码"></a>响应行里面，常见的状态码</h5><ul>
+<li><p>200：请求成功 处理方式：获得响应的内容，进行处理</p>
+</li>
+<li><p>301：请求到的资源都会分配一个永久的URL，这样就可以在将来通过该URL来访问此资源 处理方式：重定向到分配的URL</p>
+</li>
+<li><p>302：请求到的资源在一个不同的URL处临时保存 处理方式：重定向到临时的URL</p>
+</li>
+<li><p>304：请求的资源未更新 处理方式：丢弃，使用本地缓存文件</p>
+</li>
+<li><p>403：禁止 处理方式：丢弃</p>
+</li>
+<li><p>404：没有找到 处理方式：丢弃</p>
+</li>
+<li><p>405：请求方式不对</p>
+</li>
+<li><p>500：服务器内部错误 服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。一般来说，这个问题都会在服务器端的源代码出现错误时出现。</p>
+</li>
+</ul>
+<h4 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h4><p>Location: 服务器通过这个头，来告诉浏览器跳到哪里</p>
+<ul>
+<li><p>Server：服务器通过这个头，告诉浏览器服务器的型号</p>
+</li>
+<li><p>Content-Encoding：服务器通过这个头，告诉浏览器，数据的压缩格式</p>
+</li>
+<li><p>Content-Length: 服务器通过这个头，告诉浏览器回送数据的长度</p>
+</li>
+<li><p>Content-Language: 服务器通过这个头，告诉浏览器语言环境</p>
+</li>
+<li><p>Content-Type：服务器通过这个头，告诉浏览器回送数据的类型</p>
+</li>
+<li><p>Refresh：服务器通过这个头，告诉浏览器定时刷新</p>
+</li>
+<li><p>Content-Disposition: 服务器通过这个头，告诉浏览器以下载方式打数据</p>
+</li>
+<li><p>Transfer-Encoding：服务器通过这个头，告诉浏览器数据是以分块方式回送的</p>
+</li>
+<li><p>Expires: -1  控制浏览器不要缓存</p>
+</li>
+<li><p>Cache-Control: no-cache  </p>
+</li>
+<li><p>Pragma: no-cache</p>
+</li>
+</ul>
+<h4 id="响应内容：html、css、js、图片"><a href="#响应内容：html、css、js、图片" class="headerlink" title="响应内容：html、css、js、图片"></a>响应内容：html、css、js、图片</h4><h4 id="抓包工具"><a href="#抓包工具" class="headerlink" title="抓包工具"></a>抓包工具</h4><p>（1）谷歌浏览器自带抓包工具<br>    右键开发者工具==》network<br>    XHR: XMLHttpReqeust  前端要想发送ajax请求，通过它创建对象，发送请求<br>    query_string_parameters : 请求字符串，get参数<br>    formdata ： 如果是post参数<br>（2）专业工具，fiddler，charles……<br>    专业抓包工具，比谷歌强在了跳转的时候很多请求都能抓取到<br>    前端要像发送ajax请求，创建对象调用对象方法需要通过XHR</p>
+<h4 id="urllib库"><a href="#urllib库" class="headerlink" title="urllib库"></a>urllib库</h4><p>​    urllib库是自带的python库，模拟发送http请求<br>    在python 2系列中使用：urllib  urllib2<br>    在python 3系列中使用：urllib  </p>
+<h4 id="urllib库的使用"><a href="#urllib库的使用" class="headerlink" title="urllib库的使用"></a>urllib库的使用</h4><ol>
+<li><p>urllib.request  模拟发送请求</p>
+<ul>
+<li><p>urlopen(url) : 向url发送请求，得到响应对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line">url = <span class="string">'http://www.baidu.com/'</span></span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(url)</span><br><span class="line"></span><br><span class="line">print(response)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<p>   可以看到结果如下：</p>
+<p>   <img src="网络爬虫1-http协议和urllib/urllib.request.urlopen-result.png" alt="urllib.request.urlopen-result"></p>
+<ul>
+<li><p>print(response.read().decode(‘utf8’))：得到了二进制的格式，下一步我们需要使用decode将二进制格式解码为字符串格式</p>
+<h5 id="response属性和方法"><a href="#response属性和方法" class="headerlink" title="response属性和方法"></a>response属性和方法</h5></li>
+<li><p>print(response.url)：拿到请求的url</p>
+</li>
+<li><p>print(response.headers)：拿到请求的headers</p>
+</li>
+<li><p>print(response.status)：拿到请求的状态码</p>
+</li>
+<li><p>urllib.parse: 处理参数或者url</p>
+</li>
+<li><p>urllib.error:  如何处理异常</p>
+</li>
+</ul>
+<h5 id="保存到文件"><a href="#保存到文件" class="headerlink" title="保存到文件"></a>保存到文件</h5><p>​    将抓取的数据保存到文件有两种方式：</p>
+<p>第一种方式：通过with打开文件（注意统一编码格式）</p>
+<ol>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将获取的响应内容保存到文件中</span></span><br><span class="line"><span class="comment"># with open('baidu1.html', 'a', encoding='utf8') as fp:</span></span><br><span class="line"><span class="comment">#     fp.write(response.read().decode('utf8'))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以二进制的格式保存</span></span><br><span class="line"><span class="comment"># with open('baidu2.html', 'wb') as fp:</span></span><br><span class="line"><span class="comment"># fp.write(response.read())</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>第二种方式：直接以二进制的格式写入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实现发送请求，将内容写入文件</span></span><br><span class="line"><span class="comment"># urllib.request.urlretrieve(url, 'baidu3.html')</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><ul>
+<li>urlretrieve(url, filepath) ： 向url发送请求，直接将响应写入到filepath中</li>
+</ul>
+</li>
+<li><p>编码：</p>
+<ul>
+<li><p>字符串格式==》字节格式</p>
+<p>encode(‘utf8’)</p>
+</li>
+<li><p>字节格式==》字符串格式</p>
+<p>decode(‘gbk’)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="爬取图片的保存"><a href="#爬取图片的保存" class="headerlink" title="爬取图片的保存"></a>爬取图片的保存</h5><p>​    下载图片：得到图片的src属性，就可以将图片下载到本地</p>
+<p>​    有两种方式，主要是对图片是做二进制的处理:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line">url = <span class="string">'https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1533639915215&amp;di=1bbd3901c9991b363ac0211dc861a909&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F225a5f3f75d1d4c59532704782eebd25d323fd801e57a-VlY5c4_fw658'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一种方式，发送请求，获取响应</span></span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(url)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'meinv.jpg'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> fp:</span><br><span class="line"></span><br><span class="line">	fp.write(response.read())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二种方式，</span></span><br><span class="line"></span><br><span class="line">urllib.request.urlretrieve(url, <span class="string">'meinv2.png'</span>)</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python网络爬虫/" rel="tag"># python网络爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/30/爬虫-url/" rel="next" title="爬虫-url">
+                <i class="fa fa-chevron-left"></i> 爬虫-url
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/07/mysql数据库CRUD/" rel="prev" title="mysql数据库CRUD">
+                mysql数据库CRUD <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">karen2066</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">karen2066</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="//src/utils.js?v="></script>
+
+  <script type="text/javascript" src="//src/motion.js?v="></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="//src/scrollspy.js?v="></script>
+<script type="text/javascript" src="//src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="//src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

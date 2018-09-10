@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next " lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="//main.css?v=" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="关系型数据入门关系型数据概述 数据持久化。 数据库发展史。 关系型数据库特点。 E-R图。 关系型数据库产品。  MySQL简介1.为什么要使用关系型数据库：见特点 2.关系型数据库的三个特点：  集合论加关系代数  用二维表承载数据，有行有列  编程语言sql，ddl，dml，dql，dcl ####mysql的特点： 比非关系型数据库，在数据强一致性和安全性方面，或者对于数据要求特别高的（比如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Karen">
+<meta property="og:url" content="http://yoursite.com/2018/07/17/关系型数据库MySQL/index.html">
+<meta property="og:site_name" content="Karen">
+<meta property="og:description" content="关系型数据入门关系型数据概述 数据持久化。 数据库发展史。 关系型数据库特点。 E-R图。 关系型数据库产品。  MySQL简介1.为什么要使用关系型数据库：见特点 2.关系型数据库的三个特点：  集合论加关系代数  用二维表承载数据，有行有列  编程语言sql，ddl，dml，dql，dcl ####mysql的特点： 比非关系型数据库，在数据强一致性和安全性方面，或者对于数据要求特别高的（比如">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-28T13:08:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Karen">
+<meta name="twitter:description" content="关系型数据入门关系型数据概述 数据持久化。 数据库发展史。 关系型数据库特点。 E-R图。 关系型数据库产品。  MySQL简介1.为什么要使用关系型数据库：见特点 2.关系型数据库的三个特点：  集合论加关系代数  用二维表承载数据，有行有列  编程语言sql，ddl，dml，dql，dcl ####mysql的特点： 比非关系型数据库，在数据强一致性和安全性方面，或者对于数据要求特别高的（比如">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: '',
+    version: '',
+    sidebar: "",
+    fancybox: ,
+    tabs: ,
+    motion: "",
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title> | Karen</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container  page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Karen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/关系型数据库MySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karen2066">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Karen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="关系型数据入门"><a href="#关系型数据入门" class="headerlink" title="关系型数据入门"></a>关系型数据入门</h2><h3 id="关系型数据概述"><a href="#关系型数据概述" class="headerlink" title="关系型数据概述"></a>关系型数据概述</h3><ol>
+<li>数据持久化。</li>
+<li>数据库发展史。</li>
+<li>关系型数据库特点。</li>
+<li>E-R图。</li>
+<li>关系型数据库产品。</li>
+</ol>
+<h3 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h3><p>1.为什么要使用关系型数据库：见特点</p>
+<p>2.关系型数据库的三个特点：</p>
+<ul>
+<li><p>集合论加关系代数</p>
+</li>
+<li><p>用二维表承载数据，有行有列</p>
+</li>
+<li><p>编程语言sql，ddl，dml，dql，dcl</p>
+<p>####mysql的特点：</p>
+<p>比非关系型数据库，在数据强一致性和安全性方面，或者对于数据要求特别高的（比如金融机构等），mysql数据库在底层有锁机制，能够更好的保存，管理数据。</p>
+<p>windows下面是默认的是150个链接</p>
+<p>Linux系统可以配置链接客户端数量，改配置文件</p>
+<h4 id="开启事务"><a href="#开启事务" class="headerlink" title="开启事务"></a>开启事务</h4><p>1.敲begin;或者start transaction;开启事务环境，可以回滚，提交commit后是真正删除。事务环境要么全成功，要么全失败</p>
+<p>2.只能一个用户操作这一行，排他锁，排队操作，不一定是行级锁，有可能是整个表，但读取数据时是使用的共享锁，都可以读；</p>
+<p>3.如果希望读数据的时候也用排他锁:begin;查询语句后面加for update;</p>
+<p>select * from tbdept for update,另一用户也在事务环境中for update</p>
+<h4 id="事务隔离级别，事务传播级别"><a href="#事务隔离级别，事务传播级别" class="headerlink" title="事务隔离级别，事务传播级别"></a>事务隔离级别，事务传播级别</h4></li>
+</ul>
+<ol>
+<li>安装和配置。</li>
+<li>常用命令。</li>
+</ol>
+<h3 id="SQL详解"><a href="#SQL详解" class="headerlink" title="SQL详解"></a>SQL详解</h3><ol>
+<li>DDL</li>
+<li>DML</li>
+<li>DQL</li>
+</ol>
+<h3 id="Python数据库编程"><a href="#Python数据库编程" class="headerlink" title="Python数据库编程"></a>Python数据库编程</h3><p>#####MySQLdb</p>
+<p>在python2中使用，目前在python3中使用的是PyMySQL</p>
+<p>#####PyMySQL</p>
+<p>能够对数据进行CRUD操作</p>
+<p>####Linux系统下安装mysql：</p>
+<ul>
+<li>使用rpm包管理工具（redhat包管理工具）</li>
+</ul>
+<ul>
+<li><p>安装：ls  | xargs rpm -ivh</p>
+</li>
+<li><p>卸载：rpm -qa | grep mysql | xargs rpm -e</p>
+</li>
+<li><p>改配置：vim /etc/my.conf</p>
+<p>​    绑定ip地址：bind-address=</p>
+<p>​    绑定端口：port=</p>
+<p>​    指定最大链接数：max_connections=</p>
+<p>​    不输密码就可以登录：skip-grant-tables</p>
+<p>在centos7下:</p>
+</li>
+<li><p>启动：systemctl start mysqld</p>
+</li>
+<li><p>状态：systemctl status mysqld</p>
+</li>
+<li><p>开机自启：systemctl enable mysqld</p>
+</li>
+<li><p>查看是否启动（进程）：ps -ef | grep mysqld</p>
+</li>
+<li><p>查看端口是否被占用：netstat -nap | grep 3306</p>
+</li>
+</ul>
+<p>####mysql的客户端工具的使用</p>
+<ul>
+<li><p>mysql -u root-p :本机进到客户端工具</p>
+</li>
+<li><p>mysql -u root -h (地址) -p：链接远端</p>
+</li>
+<li><p>查看帮助信息</p>
+<p>查看帮助信息：?  contents</p>
+<p>查看数据类型：? data types</p>
+<p>查看整数：? int</p>
+<p>查看show这个命令怎么用：? show</p>
+</li>
+</ul>
+<p>####SQL </p>
+<ol>
+<li><p>DDL</p>
+<p>create / drop / alter</p>
+</li>
+<li><p>DML</p>
+<p>insert / delete / update</p>
+</li>
+<li><p>DQL</p>
+<p>select /    as / where / like / regexp /group by / order by asc/desc</p>
+</li>
+<li><p>DCL</p>
+<p>grant(授权) / revoke(召回权限) / begin / commit / rollback</p>
+<p>​</p>
+</li>
+</ol>
+<p>####Python —&gt;MySQL</p>
+<h5 id="PyMySQL的使用"><a href="#PyMySQL的使用" class="headerlink" title="PyMySQL的使用"></a>PyMySQL的使用</h5><ul>
+<li><p>创建链接，connect创建链接对象</p>
+</li>
+<li><p>打开数据库连接</p>
+</li>
+<li><p>运用pymysql里面的connet方法</p>
+</li>
+<li><p>db = pymysql.connect(“localhost”,”testuser”,”test123”,”TESTDB” )</p>
+</li>
+<li><p>服务器（云就写公网），用户名，密码，数据库名字</p>
+</li>
+<li><p>编码黑洞：拉丁一语系的编码，就是存不下，全是问号，还原不了（乱码可以还原）</p>
+<p>​    big5：大5码，繁体中文</p>
+<p>​    gb2312:国标扩</p>
+<p>​    gb18030：国标，少数民族也可以</p>
+<p>​    latin1:iso-8859-1：默认选择了拉丁一语系编码，造成编码黑洞</p>
+</li>
+<li><p>cursor:读取数据可以滑动</p>
+</li>
+</ul>
+<ul>
+<li><p>使用 cursor() 方法创建一个游标对象connection </p>
+<p>​    pymysql.connext(host……)</p>
+</li>
+<li><p>cursor指定host，port(默认3306，当默认时可不写)，user，passwd（password） db(database),charset.</p>
+</li>
+</ul>
+<ul>
+<li>cursor.execute()执行</li>
+</ul>
+<ul>
+<li>cursor.fetchall()：拿所有</li>
+</ul>
+<ul>
+<li><p>fetchone()：拿一条</p>
+</li>
+<li><p>cursor.rowcount</p>
+<p>​    cursor = db.cursor()</p>
+</li>
+<li><p>查询时转换成字典:cursorclass=DictCursor</p>
+</li>
+<li><p>查询时别名</p>
+</li>
+<li><p>手动提交:commit()</p>
+</li>
+<li><p>自动提交:autocommit=True</p>
+</li>
+<li><p>装的时候叫pillow，用的时候交PIL</p>
+</li>
+</ul>
+<p>####pycharm中库或者插件安装办法：</p>
+<ul>
+<li>​    红灯泡自动修复错误<br>   ​    终端<br>   ​    +号安装</li>
+</ul>
+<p>安装虚拟环境：virtualenv –no-site-package venv</p>
+<p>6.28</p>
+<p>在函数中如何拿到链接mysql数据库的方法：</p>
+<ul>
+<li><p>第一种方式：将连接语句设置为全局变量,全局作用域，这是非常不好的做法，因为全局变量的影响范围太广，有时无法有效控制</p>
+<p>语法：global con</p>
+</li>
+<li><p>第二种方式：将连接语句使用参数传递给需要使用的方法中</p>
+<p>语法：add_new_contacter(con)</p>
+</li>
+</ul>
+<p>抽取常量</p>
+<p>####sql语句：limit %s offset %s</p>
+<p>含义：查看多少条；从第几条开始，（跳过几条），</p>
+<p>查看数量，偏移量，</p>
+<p>####类：enumerate</p>
+<p>for index, row in enumerate(cursor.fetchall()):   ？？？</p>
+<p>显示一个编号，for循环在range中有编号，自定义的列表是没有编号的</p>
+<p>####关于安全占位符</p>
+<p>安全在于，它会自动补全引号。只有一个占位符也是传递元组，安全占位符only接收元组</p>
+<p>#####复用代码的最佳方式：封装，写成类或者函数</p>
+<p>####作用域：</p>
+<ul>
+<li>LEGB的查找方式：</li>
+<li>global和nonlocal两层含义：用全局中的（修改也是），第二是全局没有它放到全局中</li>
+</ul>
+<p>####面向对象</p>
+<ul>
+<li><p>数据抽象：属性（名词）</p>
+<pre><code>初始化方法绑定属性
+</code></pre></li>
+<li><p>行为抽象：方法（动词）</p>
+<pre><code>花括号占位符
+</code></pre></li>
+</ul>
+<p>三种创建方式：</p>
+<ol>
+<li><p>三步走：定义类，创建对象，调用对象（给对象发消息）</p>
+</li>
+<li><p>两步走：创建对象，给对象发消息</p>
+</li>
+<li><p>一步走：给对象发消息（document对象，window对象）</p>
+<p>​</p>
+</li>
+</ol>
+<p>#####怎么把将字典变成对象</p>
+<p>​    创建对象：构造器，跟类名完全一致,调构造器时会自动初始化，需要传参，将字典传入关键字参数</p>
+<p>​    将字典处理成关键字参数传入构造器</p>
+<h3 id="ORM概述"><a href="#ORM概述" class="headerlink" title="ORM概述"></a>ORM概述</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/17/购物app_个人中心 模板/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/17/NoSQL入门/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">karen2066</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">karen2066</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="//src/utils.js?v="></script>
+
+  <script type="text/javascript" src="//src/motion.js?v="></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="//src/scrollspy.js?v="></script>
+<script type="text/javascript" src="//src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="//src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
