@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python基础," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
+<meta name="description" content="###关于排序算法的问题梳理： ​    衡量一个算法的好坏有两个指标：渐近时间复杂度和渐近空间复杂度  第一类：简单排序算法 - 简单选择排序、简单插入排序、冒泡排序 - O(n ** 2)  第二类：高级排序算法 - 快速排序、归并排序 - O(n * log2 n)  本文主要介绍冒泡排序和归并排序 ####冒泡排序 1234567891011121314151617181920212223">
+<meta name="keywords" content="python基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Linux系统中安装软件的几种方式">
-<meta property="og:url" content="http://yoursite.com/2018/09/05/在Linux系统中安装软件的几种方式/index.html">
+<meta property="og:title" content="排序的几种算法">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/排序的几种算法/index.html">
 <meta property="og:site_name" content="Karen">
+<meta property="og:description" content="###关于排序算法的问题梳理： ​    衡量一个算法的好坏有两个指标：渐近时间复杂度和渐近空间复杂度  第一类：简单排序算法 - 简单选择排序、简单插入排序、冒泡排序 - O(n ** 2)  第二类：高级排序算法 - 快速排序、归并排序 - O(n * log2 n)  本文主要介绍冒泡排序和归并排序 ####冒泡排序 1234567891011121314151617181920212223">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-05T06:16:32.000Z">
+<meta property="og:updated_time" content="2018-09-10T09:33:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Linux系统中安装软件的几种方式">
+<meta name="twitter:title" content="排序的几种算法">
+<meta name="twitter:description" content="###关于排序算法的问题梳理： ​    衡量一个算法的好坏有两个指标：渐近时间复杂度和渐近空间复杂度  第一类：简单排序算法 - 简单选择排序、简单插入排序、冒泡排序 - O(n ** 2)  第二类：高级排序算法 - 快速排序、归并排序 - O(n * log2 n)  本文主要介绍冒泡排序和归并排序 ####冒泡排序 1234567891011121314151617181920212223">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/05/在Linux系统中安装软件的几种方式/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/10/排序的几种算法/"/>
 
 
 
 
 
-  <title>在Linux系统中安装软件的几种方式 | Karen</title>
+  <title>排序的几种算法 | Karen</title>
   
 
 
@@ -293,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/在Linux系统中安装软件的几种方式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/排序的几种算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="karen2066">
@@ -310,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">在Linux系统中安装软件的几种方式</h1>
+          <h1 class="post-title" itemprop="name headline">排序的几种算法</h1>
         
 
         <div class="post-meta">
@@ -322,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-05T14:16:32+08:00">
-                2018-09-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:15:11+08:00">
+                2018-09-10
               </time>
             
 
@@ -360,7 +364,30 @@
       
 
       
-        
+        <p>###关于排序算法的问题梳理：</p>
+<p>​    衡量一个算法的好坏有两个指标：渐近时间复杂度和渐近空间复杂度</p>
+<ul>
+<li>第一类：简单排序算法 - 简单选择排序、简单插入排序、冒泡排序 - O(n ** 2) </li>
+<li>第二类：高级排序算法 - 快速排序、归并排序 - O(n * log2 n)</li>
+</ul>
+<p>本文主要介绍冒泡排序和归并排序</p>
+<p>####冒泡排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">68, 34, 12, 95, 73, 80, 57</span><br><span class="line">34, 12, 68, 73, 80, 57, 95</span><br><span class="line">12, 34, 68, 73, 57, 80</span><br><span class="line">12, 34, 68, 57, 73</span><br><span class="line">12, 34, 57, 68</span><br><span class="line">12, 34, 57</span><br><span class="line">12, 34</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">def bubble_sort(unsorted_items, *, comp=lambda x, y: x &gt; y):</span><br><span class="line">    &quot;&quot;&quot;冒泡排序&quot;&quot;&quot;</span><br><span class="line">    items = unsorted_items[:]</span><br><span class="line">    items_len = len(items)</span><br><span class="line">    for i in range(items_len - 1):</span><br><span class="line">        swapped = False</span><br><span class="line">        for j in range(items_len - 1 - i):</span><br><span class="line">            if comp(items[j], items[j + 1]):</span><br><span class="line">                items[j], items[j + 1] = items[j + 1], items[j]</span><br><span class="line">                swapped = True</span><br><span class="line">        if swapped:</span><br><span class="line">            swapped = False</span><br><span class="line">            for j in range(items_len - 2 - i, 0, -1):</span><br><span class="line">                if comp(items[j - 1], items[j]):</span><br><span class="line">                    items[j], items[j - 1] = items[j - 1], items[j]</span><br><span class="line">                    swapped = True</span><br><span class="line">        if not swapped:</span><br><span class="line">            break</span><br><span class="line">    return items</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># class Student():</span><br><span class="line">#</span><br><span class="line">#     def __init__(self, name, age):</span><br><span class="line">#         self.name = name</span><br><span class="line">#         self.age = age</span><br><span class="line">#</span><br><span class="line">#     def __repr__(self):</span><br><span class="line">#         return f&apos;&#123;self.name&#125;: &#123;self.age&#125;&apos;</span><br><span class="line">#</span><br><span class="line">#     def __gt__(self, other):</span><br><span class="line">#         return self.age &gt; other.age</span><br><span class="line"># 使用namedtuple可以更简洁的生成类</span><br><span class="line">Student = namedtuple(&apos;Student&apos;, (&apos;name&apos;, &apos;age&apos;))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    &quot;&quot;&quot;主函数&quot;&quot;&quot;</span><br><span class="line">    items = [</span><br><span class="line">        Student(&apos;Luo Hao&apos;, 38), Student(&apos;Wang Dachui&apos;, 19),</span><br><span class="line">        Student(&apos;Lee Xiaolong&apos;, 25), Student(&apos;Zhang Sanfeng&apos;, 120)</span><br><span class="line">    ]</span><br><span class="line">    print(bubble_sort(unsorted_items=items,</span><br><span class="line">                      comp=lambda x, y: x.age &gt; y.age))</span><br><span class="line">    items2 = [&apos;pitaya&apos;, &apos;pear&apos;, &apos;apple&apos;, &apos;watermelon&apos;, &apos;waxberry&apos;]</span><br><span class="line">    print(bubble_sort(items2, comp=lambda x, y: len(x) &gt; len(y)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><p>​    通过分解再重组来排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">68, 34, 12, 95, 73, 80, 57</span><br><span class="line">[69, 34, 12], [95, 73, 80, 57]</span><br><span class="line">[69], [34, 12], [95, 73], [80, 57]</span><br><span class="line">[69], [34], [12], [95], [73], [80], [57]</span><br><span class="line">----------------------------------------</span><br><span class="line">[34, 69], [12, 95], [73, 80], [57]</span><br><span class="line">[12, 34, 69, 95], [57, 73, 80]</span><br><span class="line">[12, 34, 57, 69, 73, 80, 95]</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># 分治法 - 将规模较大的问题划分为规模较小的子问题 用子问题解合并出原问题的解</span><br><span class="line"># divide-and-conquer</span><br><span class="line">def merge_sort(unsorted_items, *, comp=lambda x, y: x &lt; y):</span><br><span class="line">    if len(unsorted_items) &lt;= 1:</span><br><span class="line">        return unsorted_items[:]</span><br><span class="line">    mid = len(unsorted_items) // 2</span><br><span class="line">    left = merge_sort(unsorted_items[:mid], comp=comp)</span><br><span class="line">    right = merge_sort(unsorted_items[mid:], comp=comp)</span><br><span class="line">    return merge(left, right, comp=comp)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def merge(list1, list2, *, comp=lambda x, y: x &lt; y):</span><br><span class="line">    &quot;&quot;&quot;将两个有序列表合并 合并之后仍然有序&quot;&quot;&quot;</span><br><span class="line">    list3 = []</span><br><span class="line">    index1, index2 = 0, 0</span><br><span class="line">    while index1 &lt; len(list1) and index2 &lt; len(list2):</span><br><span class="line">        if comp(list1[index1], list2[index2]):</span><br><span class="line">            list3.append(list1[index1])</span><br><span class="line">            index1 += 1</span><br><span class="line">        else:</span><br><span class="line">            list3.append(list2[index2])</span><br><span class="line">            index2 += 1</span><br><span class="line">    list3 += list1[index1:]</span><br><span class="line">    list3 += list2[index2:]</span><br><span class="line">    return list3</span><br><span class="line">    </span><br><span class="line">    def main():</span><br><span class="line">    &quot;&quot;&quot;主函数&quot;&quot;&quot;</span><br><span class="line">    items3 = [68, 34, 12, 95, 73, 80, 57]</span><br><span class="line">    print(merge_sort(items3))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 分治法：分而治之，将大问题拆解</p>
+</blockquote>
+<blockquote>
+<p>所以能用循环的地方都不用递归</p>
+</blockquote>
+<h4 id="例子：小孩走楼梯"><a href="#例子：小孩走楼梯" class="headerlink" title="例子：小孩走楼梯"></a>例子：小孩走楼梯</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 爬楼梯 一次可以爬1个、2个、3个台阶</span><br><span class="line"># 爬完10个台阶一共有多少种走法</span><br><span class="line">def walk(num, result=&#123;&#125;):</span><br><span class="line">    if num == 0:</span><br><span class="line">        return 1</span><br><span class="line">    elif num &lt; 0:</span><br><span class="line">        return 0</span><br><span class="line">    try:</span><br><span class="line">        return result[num]</span><br><span class="line">    except KeyError:</span><br><span class="line">        result[num] = walk(num - 1) + walk(num - 2) + walk(num - 3)</span><br><span class="line">        return result[num]</span><br><span class="line">        </span><br><span class="line">def main():</span><br><span class="line">    for num in range(1, 11):</span><br><span class="line">        print(f&apos;&#123;num&#125;: &#123;walk(num)&#125;&apos;)</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h4 id="例子2-斐波拉契数列的两种解法"><a href="#例子2-斐波拉契数列的两种解法" class="headerlink" title="例子2:斐波拉契数列的两种解法"></a>例子2:斐波拉契数列的两种解法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def factorial(num):</span><br><span class="line">    if num in (0, 1):</span><br><span class="line">        return 1</span><br><span class="line">    return num * factorial(num - 1)</span><br></pre></td></tr></table></figure>
+<p>斐波拉契优化：</p>
+<h4 id="动态规划优化"><a href="#动态规划优化" class="headerlink" title="动态规划优化"></a>动态规划优化</h4><p>​    将求解的中间值储存起来，牺牲空间换取时间</p>
+<pre><code>使用动态规划算法，求解的问题有局部最优解或者最优字结构，（把每一次的结果保存下来）
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 1 1 2 3 5 8 13 21 34 55 ...</span><br><span class="line"># 动态规划 - 求解的问题有局部最优解或者最优子结构</span><br><span class="line">def fib2(num, result=&#123;&#125;):</span><br><span class="line">    if num in (1, 2):</span><br><span class="line">        return 1</span><br><span class="line">    try:</span><br><span class="line">        return result[num]</span><br><span class="line">    except KeyError:</span><br><span class="line">        result[num] = fib2(num - 1) + fib2(num - 2)</span><br><span class="line">        return result[num]</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -375,6 +402,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/python基础/" rel="tag"># python基础</a>
+          
+        </div>
+      
 
       
       
@@ -384,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/01/mysql数据库CRUD-3/" rel="next" title="mysql数据库CRUD-3">
-                <i class="fa fa-chevron-left"></i> mysql数据库CRUD-3
+              <a href="/2018/09/05/在Linux系统中安装软件的几种方式/" rel="next" title="在Linux系统中安装软件的几种方式">
+                <i class="fa fa-chevron-left"></i> 在Linux系统中安装软件的几种方式
               </a>
             
           </div>
@@ -393,10 +426,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/10/排序的几种算法/" rel="prev" title="排序的几种算法">
-                排序的几种算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -448,8 +477,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -504,6 +542,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#归并排序"><span class="nav-number">1.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子：小孩走楼梯"><span class="nav-number">2.</span> <span class="nav-text">例子：小孩走楼梯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子2-斐波拉契数列的两种解法"><span class="nav-number">3.</span> <span class="nav-text">例子2:斐波拉契数列的两种解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态规划优化"><span class="nav-number">4.</span> <span class="nav-text">动态规划优化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
